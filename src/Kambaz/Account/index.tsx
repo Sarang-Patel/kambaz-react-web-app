@@ -7,7 +7,7 @@ import AccountNavigation from "./Navigation";
 export default function Account() {
   return (
     <div id="wd-account-screen">
-      <table>
+      <table style={{marginTop: "2rem"}}>
         <tr>
           <td valign="top">
             <AccountNavigation />
