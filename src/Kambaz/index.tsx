@@ -10,7 +10,7 @@ export default function kambaz() {
     <div id="wd-kambaz" className="d-flex">
       <KambazNavigation />
 
-      <div className="wd-main-content-offset p-3">
+      <div className="wd-main-content-offset p-3 w-100">
         <Routes>
           <Route path="/" element={<Navigate to="/Kambaz/Account" />} />
           <Route path="/Account/*" element={<Account />} />

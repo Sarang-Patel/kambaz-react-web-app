@@ -1,11 +1,44 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export default function AccountNavigation() {
     return (
         <div id="wd-account-navigation" className="list-group wd fs-5 rounded-0 me-5">
-            <Link to={`/Kambaz/Account/Signin`} className="list-group-item border-0 active">Sign in</Link> <br />
-            <Link to={`/Kambaz/Account/Signup`} className="list-group-item border-0 text-danger">Sign up</Link> <br />
-            <Link to={`/Kambaz/Account/Profile`} className="list-group-item border-0 text-danger">Profile</Link> <br />
+            <NavLink 
+                to={`/Kambaz/Account/Signin`} 
+                className={({ isActive }) => 
+                    `list-group-item border-0 ${isActive ? 'active' : 'text-danger'}`
+                }
+                style={({ isActive }) => ({
+                    color: isActive ? 'black' : 'red',
+                })}
+            >
+                Sign in
+            </NavLink>
+            <br />
+            <NavLink 
+                to={`/Kambaz/Account/Signup`} 
+                className={({ isActive }) => 
+                    `list-group-item border-0 ${isActive ? 'active' : 'text-danger'}`
+                }
+                style={({ isActive }) => ({
+                    color: isActive ? 'black' : 'red',
+                })}
+            >
+                Sign up
+            </NavLink>
+            <br />
+            <NavLink 
+                to={`/Kambaz/Account/Profile`} 
+                className={({ isActive }) => 
+                    `list-group-item border-0 ${isActive ? 'active' : 'text-danger'}`
+                }
+                style={({ isActive }) => ({
+                    color: isActive ? 'black' : 'red',
+                })}
+            >
+                Profile
+            </NavLink>
+            <br />
         </div>
     );
 }
