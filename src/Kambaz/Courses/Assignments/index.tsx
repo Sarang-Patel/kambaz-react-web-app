@@ -80,7 +80,7 @@ export default function Assignments() {
                     A1 - ENV + HTML
                   </Link>
                   <br />
-                  <span className="fs-6 text-danger">Multiple Modules</span>
+                  <span className="fs-6 text-danger">Multiple Modules </span>
                   <span className="fs-6">
                     | <strong>Not available until</strong> May 6 at 12:00am
                   </span>
@@ -106,7 +106,7 @@ export default function Assignments() {
                     A2 - CSS + BOOTSTRAP
                   </Link>
                   <br />
-                  <span className="fs-6 text-danger">Multiple Modules</span>
+                  <span className="fs-6 text-danger">Multiple Modules </span>
                   <span className="fs-6">
                     | <strong>Not available until</strong> May 13 at 12:00am
                   </span>
@@ -133,7 +133,7 @@ export default function Assignments() {
                     A3 - JAVASCRIPT + REACT
                   </Link>
                   <br />
-                  <span className="fs-6 text-danger">Multiple Modules</span>
+                  <span className="fs-6 text-danger">Multiple Modules </span>
                   <span className="fs-6">
                     | <strong>Not available until</strong> May 20 at 12:00am
                   </span>

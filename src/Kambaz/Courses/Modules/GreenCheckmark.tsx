@@ -2,12 +2,9 @@ import { FaCheckCircle, FaCircle } from "react-icons/fa";
 
 export default function GreenCheckmark() {
   return (
-    <span className="me-1 position-relative">
-      <FaCheckCircle
-        style={{ top: "6px", right:"-1px"}}
-        className="text-success me-1 position-absolute fs-5"
-      />
-      <FaCircle className="text-white me-1 fs-6" />
+    <span className="d-inline-flex align-items-center position-relative">
+      <FaCircle className="text-white fs-6" />
+      <FaCheckCircle className="text-success fs-6 position-absolute" />
     </span>
   );
 }

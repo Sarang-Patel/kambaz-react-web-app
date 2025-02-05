@@ -35,7 +35,7 @@ export default function KambazNavigation() {
         className={`list-group-item border-0 text-center ${activeLink === 'account' ? 'bg-white text-danger' : 'bg-black text-white'}`}
         onClick={() => handleLinkClick('account')}
       >
-        <RiAccountCircleLine className="fs-1 text-danger" />
+        <RiAccountCircleLine className={`fs-1 ${activeLink === 'account' ? 'bg-white text-danger' : 'bg-black text-white'}`} />
         <br />
         Account
       </Link>
