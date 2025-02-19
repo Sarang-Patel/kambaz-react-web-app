@@ -4,15 +4,22 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { BsGripVertical } from "react-icons/bs";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { MdOutlineAssignment } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useParams } from "react-router";
+import * as db from "../../Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments.filter(
+    (assignment) => assignment.course === cid
+  );
+
   return (
     <div id="wd-assignments" className="w-100">
       <div className="d-flex justify-content-between align-items-center mb-5">
-        <div className="input-group" style={{maxWidth: "300px"}}>
+        <div className="input-group" style={{ maxWidth: "300px" }}>
           <div className="input-group-prepend">
             <span
               className="input-group-text rounded-0 bg-white fs-4 border-end-0"
@@ -51,7 +58,7 @@ export default function Assignments() {
             <div className="d-flex align-items-center">
               <BsGripVertical className="fs-5" />
               <IoMdArrowDropdown className="me-1 fs-5" />
-              <h3 id="wd-assignments-title" className="fs-5 mb-0 ">
+              <h3 id="wd-assignments-title" className="fs-5 mb-0">
                 ASSIGNMENTS
               </h3>
             </div>
@@ -66,85 +73,37 @@ export default function Assignments() {
             </div>
           </div>
           <ListGroup id="wd-assignment-list">
-            <ListGroup.Item className="wd-assignment-list-item rounded-0 d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center gap-4">
-                <div className="d-flex">
-                  <BsGripVertical className="me-2 fs-4" />
-                  <MdOutlineAssignment className="text-success fs-4" />
+            {assignments.map((assignment) => (
+              <ListGroup.Item
+                key={assignment._id}
+                className="wd-assignment-list-item rounded-0 d-flex align-items-center justify-content-between"
+              >
+                <div className="d-flex align-items-center gap-4">
+                  <div className="d-flex">
+                    <BsGripVertical className="me-2 fs-4" />
+                    <MdOutlineAssignment className="text-success fs-4" />
+                  </div>
+                  <div className="details-group">
+                    <Link
+                      to={`${assignment._id}`}
+                      className="wd-assignment-link text-decoration-none text-black fs-5"
+                    >
+                      {assignment.title}
+                    </Link>
+                    <br />
+                    <span className="fs-6 text-danger">Multiple Modules </span>
+                    <span className="fs-6">
+                      | <strong>Not available until</strong> May 6 at 12:00am
+                    </span>
+                    <br />
+                    <span className="fs-6">
+                      <strong>Due</strong> May 13 at 11:59pm | 100 pts
+                    </span>
+                  </div>
                 </div>
-                <div className="details-group">
-                  <Link
-                    to="123"
-                    className="wd-assignment-link text-decoration-none text-black"
-                  >
-                    A1 - ENV + HTML
-                  </Link>
-                  <br />
-                  <span className="fs-6 text-danger">Multiple Modules </span>
-                  <span className="fs-6">
-                    | <strong>Not available until</strong> May 6 at 12:00am
-                  </span>
-                  <br />
-                  <span className="fs-6">
-                    <strong>Due</strong> May 13 at 11:59pm | 100 pts
-                  </span>
-                </div>
-              </div>
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-assignment-list-item rounded-0 d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center gap-4">
-                <div className="d-flex">
-                  <BsGripVertical className="me-2 fs-4" />
-                  <MdOutlineAssignment className="text-success fs-4" />
-                </div>
-                <div className="details-group">
-                  <Link
-                    to="123"
-                    className="wd-assignment-link text-decoration-none text-black fs-5"
-                  >
-                    A2 - CSS + BOOTSTRAP
-                  </Link>
-                  <br />
-                  <span className="fs-6 text-danger">Multiple Modules </span>
-                  <span className="fs-6">
-                    | <strong>Not available until</strong> May 13 at 12:00am
-                  </span>
-                  <br />
-                  <span className="fs-6">
-                    <strong>Due</strong> May 20 at 11:59pm | 100 pts
-                  </span>
-                </div>
-              </div>
-              <LessonControlButtons />
-            </ListGroup.Item>
-
-            <ListGroup.Item className="wd-assignment-list-item rounded-0 d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center gap-4">
-                <div className="d-flex">
-                  <BsGripVertical className="me-2 fs-4" />
-                  <MdOutlineAssignment className="text-success fs-4" />
-                </div>
-                <div className="details-group">
-                  <Link
-                    to="123"
-                    className="wd-assignment-link text-decoration-none text-black fs-5"
-                  >
-                    A3 - JAVASCRIPT + REACT
-                  </Link>
-                  <br />
-                  <span className="fs-6 text-danger">Multiple Modules </span>
-                  <span className="fs-6">
-                    | <strong>Not available until</strong> May 20 at 12:00am
-                  </span>
-                  <br />
-                  <span className="fs-6">
-                    <strong>Due</strong> May 27 at 11:59pm | 100 pts
-                  </span>
-                </div>
-              </div>
-              <LessonControlButtons />
-            </ListGroup.Item>
+                <LessonControlButtons />
+              </ListGroup.Item>
+            ))}
           </ListGroup>
         </ListGroup.Item>
       </ListGroup>

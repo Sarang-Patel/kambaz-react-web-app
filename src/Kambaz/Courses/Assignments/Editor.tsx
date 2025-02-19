@@ -1,13 +1,21 @@
+import { useParams } from "react-router";
+import * as db from "../../Database";
+
+
 export default function AssignmentEditor() {
+
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((assignment) => assignment._id === aid);
+
   return (
     <div id="wd-assignments-editor" className="ms-3" style={{maxWidth: "750px"}}>
       <div className="mb-3">
         <label htmlFor="wd-name" className="form-label">
-          <strong>Assignment Name</strong>
+          <strong>{assignment?.title}</strong>
         </label>
         <input
           id="wd-name"
-          value="A1 - ENV + HTML"
+          value={assignment?.title}
           className="form-control"
         />
       </div>
@@ -18,12 +26,7 @@ export default function AssignmentEditor() {
           rows={10}
           className="form-control"
         >
-          The assignment is available online Submit a link to the landing page of
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sit
-          similique ea animi non voluptates eius placeat aliquid officiis quaerat.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          cumque veniam recusandae. Odio quam laudantium fugit et, perferendis
-          nisi. Magnam.
+          {assignment?.description}
         </textarea>
       </div>
 
@@ -36,7 +39,7 @@ export default function AssignmentEditor() {
         <div className="col-md-9">
           <input
             id="wd-points"
-            value={100}
+            value={assignment?.points}
             className="form-control"
           />
         </div>
@@ -152,7 +155,7 @@ export default function AssignmentEditor() {
           <input
             type="date"
             id="wd-due-date"
-            value="2024-05-13"
+            value={assignment?.dueDate}
             className="form-control"
           />
           <div className="d-flex w-100 mt-3 gap-2">
@@ -163,7 +166,7 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-from"
-                value="2024-06-05"
+                value={assignment?.availableFrom}
                 className="form-control"
               />
             </div>
@@ -174,7 +177,7 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-until"
-                value="2024-05-20"
+                value={assignment?.availableTo}
                 className="form-control"
               />
             </div>

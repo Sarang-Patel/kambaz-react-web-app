@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "A101",
+    "title": "HTML & CSS Basics",
+    "course": "CS1234",
+    "description": "Learn the fundamentals of HTML structure and CSS styling techniques.",
+    "points": 100,
+    "dueDate": "2025-03-10",
+    "availableFrom": "2025-02-25",
+    "availableTo": "2025-03-25"
+  },
+  {
+    "_id": "A102",
+    "title": "JavaScript Fundamentals",
+    "course": "CS1234",
+    "description": "Introduction to JavaScript syntax, variables, functions, and event handling.",
+    "points": 100,
+    "dueDate": "2025-03-17",
+    "availableFrom": "2025-03-03",
+    "availableTo": "2025-04-03"
+  },
+  {
+    "_id": "A103",
+    "title": "Full-Stack Project Setup",
+    "course": "CS1234",
+    "description": "Guide to setting up a full-stack project with front-end and back-end integration.",
+    "points": 150,
+    "dueDate": "2025-03-24",
+    "availableFrom": "2025-03-10",
+    "availableTo": "2025-04-10"
+  },
+  {
+    "_id": "A201",
+    "title": "Array & Linked List Implementation",
+    "course": "CS5678",
+    "description": "Implement arrays and linked lists in a programming language of choice.",
+    "points": 120,
+    "dueDate": "2025-03-12",
+    "availableFrom": "2025-02-28",
+    "availableTo": "2025-05-28"
+  },
+  {
+    "_id": "A202",
+    "title": "Sorting Algorithm Analysis",
+    "course": "CS5678",
+    "description": "Compare and analyze the efficiency of different sorting algorithms.",
+    "points": 130,
+    "dueDate": "2025-03-19",
+    "availableFrom": "2025-03-05",
+    "availableTo": "2025-03-05"
+  },
+  {
+    "_id": "A203",
+    "title": "Graph Data Structure Applications",
+    "course": "CS5678",
+    "description": "Explore real-world applications of graph data structures in computing.",
+    "points": 140,
+    "dueDate": "2025-03-26",
+    "availableFrom": "2025-03-12",
+    "availableTo": "2025-03-12"
+  },
+  {
+    "_id": "A301",
+    "title": "Database Schema Design",
+    "course": "CS9101",
+    "description": "Design and normalize a relational database schema.",
+    "points": 110,
+    "dueDate": "2025-03-14",
+    "availableFrom": "2025-03-01",
+    "availableTo": "2025-03-01"
+  },
+  {
+    "_id": "A302",
+    "title": "SQL Query Optimization",
+    "course": "CS9101",
+    "description": "Techniques for optimizing SQL queries for performance and efficiency.",
+    "points": 120,
+    "dueDate": "2025-03-21",
+    "availableFrom": "2025-03-07",
+    "availableTo": "2025-03-07"
+  },
+  {
+    "_id": "A303",
+    "title": "NoSQL vs SQL Comparison",
+    "course": "CS9101",
+    "description": "Analyze the differences, advantages, and use cases of SQL and NoSQL databases.",
+    "points": 130,
+    "dueDate": "2025-03-28",
+    "availableFrom": "2025-03-14",
+    "availableTo": "2025-03-14"
+  }
+]
