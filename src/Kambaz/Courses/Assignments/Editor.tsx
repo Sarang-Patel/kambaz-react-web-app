@@ -4,7 +4,7 @@ import * as db from "../../Database";
 
 export default function AssignmentEditor() {
 
-  const { cid, aid } = useParams();
+  const { aid } = useParams();
   const assignment = db.assignments.find((assignment) => assignment._id === aid);
 
   return (
