@@ -12,7 +12,7 @@ export default function CourseStatus() {
       <h2>Course Status</h2>
       <div className="d-flex">
         <div className="w-50 pe-1">
-          <Button variant="secondary" size="lg" className="w-100 text-nowrap ">
+          <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 text-nowrap ">
             <MdDoNotDisturbAlt className="me-2 fs-5" /> Unpublish
           </Button>
         </div>
@@ -22,24 +22,24 @@ export default function CourseStatus() {
           </Button>
         </div>
       </div>
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start">
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start">
         <BiImport className="me-2 fs-5" /> Import Existing Content
       </Button>
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start">
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start">
         <LiaFileImportSolid className="me-2 fs-5" /> Import from Commons
       </Button>
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start"> <IoMdHome className="me-2 fs-5" />
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start"> <IoMdHome className="me-2 fs-5" />
       Choose Home Page</Button>
       <br />
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start"><MdBarChart  className="me-2 fs-5" />
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start"><MdBarChart  className="me-2 fs-5" />
       View Course Stream</Button>
       <br />
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start"><TfiAnnouncement className="me-2 fs-5"  />
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start"><TfiAnnouncement className="me-2 fs-5"  />
       New Announcements</Button>
       <br />
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start"><MdBarChart className="me-2 fs-5"  />New Analytics</Button>
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start"><MdBarChart className="me-2 fs-5"  />New Analytics</Button>
       <br />
-      <Button variant="secondary" size="lg" className="w-100 mt-1 text-start"><FaBell  className="me-2 fs-5" />
+      <Button  style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" className="w-100 mt-1 text-start"><FaBell  className="me-2 fs-5" />
       View Course Notifications</Button>
     </div>
   );

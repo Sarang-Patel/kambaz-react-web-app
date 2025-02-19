@@ -4,18 +4,22 @@ import AssignmentEditor from "./Assignments/Editor";
 import Home from "./Home";
 import Modules from "./Modules";
 import CourseNavigation from "./Navigation";
-import { Navigate, NavLink, Route, Routes } from "react-router";
+import { Navigate, NavLink, Route, Routes, useParams, useLocation } from "react-router";
 import Table from "./People/Table";
 import NavigationMobile from "./NavigationMobile";
+import {courses} from "../Database";
 
 export default function Courses() {
+  const {cid} = useParams();
+  const {pathname} = useLocation();
+  const course = courses.find((course) => course._id === cid);
   return (
     <div id="wd-courses" className="w-100"> 
       <div className="d-flex align-items-center">
         <NavLink to={"/Kambaz/Courses/1234/Nav"}>
           <RxHamburgerMenu className="me-4 fs-4 mb-1 text-danger d-md-none d-sm-block" style={{ cursor: 'pointer' }}/>
         </NavLink>
-        <h2 className="text-danger">Course 1234</h2>
+        <h2 className="text-danger my-2 fs-3 d-flex align-items-center">{course?.name} <span className="fs-5 ms-2" style={{position: "relative", top: "0px"}}>&gt; {pathname.split("/")[4]}</span></h2>
       </div>
       <hr />
 

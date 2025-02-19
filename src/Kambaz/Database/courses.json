@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "CS1234",
+    "name": "Web Development",
+    "number": "CS1234",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Computer Science",
+    "credits": 4,
+    "image_url": "images/webdev.png",
+    "description": "This course provides an introduction to full-stack web development, covering front-end and back-end technologies, databases, and deployment strategies."
+  },
+  {
+    "_id": "CS5678",
+    "name": "Data Structures",
+    "number": "CS5678",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Computer Science",
+    "credits": 4,
+    "image_url": "images/ds.jpg",
+    "description": "An in-depth study of data structures such as arrays, linked lists, stacks, queues, trees, and graphs, with an emphasis on algorithms and efficiency."
+  },
+  {
+    "_id": "CS91011",
+    "name": "AI Basics",
+    "number": "CS91011",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Artificial Intelligence",
+    "credits": 3,
+    "image_url": "images/ai.png",
+    "description": "An introductory course on artificial intelligence, exploring topics such as machine learning, neural networks, and ethical considerations in AI."
+  },
+  {
+    "_id": "CS1213",
+    "name": "Networking",
+    "number": "CS1213",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Computer Science",
+    "credits": 3,
+    "image_url": "images/networking.jpg",
+    "description": "A comprehensive study of computer networks, including network protocols, TCP/IP, network security, and cloud-based networking solutions."
+  },
+  {
+    "_id": "CS1415",
+    "name": "Database Management",
+    "number": "CS1415",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Computer Science",
+    "credits": 3,
+    "image_url": "images/dbms.jpg",
+    "description": "Covers the fundamentals of database management systems, SQL, NoSQL, indexing, normalization, and data security."
+  },
+  {
+    "_id": "CS1617",
+    "name": "Cloud Computing",
+    "number": "CS1617",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Computer Science",
+    "credits": 3,
+    "image_url": "images/cloud.jpg",
+    "description": "Introduces cloud computing concepts, including virtualization, cloud architecture, cloud services, and deployment models."
+  },
+  {
+    "_id": "CS1819",
+    "name": "Cybersecurity",
+    "number": "CS1819",
+    "startDate": "2024-01-15",
+    "endDate": "2024-05-20",
+    "department": "Cybersecurity",
+    "credits": 3,
+    "image_url": "images/cybersecurity.jpg",
+    "description": "Focuses on the fundamentals of cybersecurity, covering cryptography, ethical hacking, security policies, and risk management."
+  }
+]

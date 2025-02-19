@@ -13,7 +13,7 @@ export default function ModulesControls() {
         Module
       </Button>
       <Dropdown>
-        <Dropdown.Toggle variant="secondary" size="lg" id="wd-publish-all-btn">
+        <Dropdown.Toggle style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" id="wd-publish-all-btn">
           <GreenCheckmark /> Publish All
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -34,10 +34,10 @@ export default function ModulesControls() {
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <Button variant="secondary" size="lg" id="wd-view-progress">
+      <Button  size="lg" id="wd-view-progress"  style={{backgroundColor: "#f5f5f5"}} variant="secondary">
         View Progress
       </Button>
-      <Button variant="secondary" size="lg" id="wd-collapse-all">
+      <Button  size="lg" id="wd-collapse-all"  style={{backgroundColor: "#f5f5f5"}} variant="secondary">
         Collapse All
       </Button>
     </div>
