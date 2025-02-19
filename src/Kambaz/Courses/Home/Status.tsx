@@ -5,7 +5,7 @@ import { IoMdHome } from "react-icons/io";
 import { LiaFileImportSolid } from "react-icons/lia";
 import { MdBarChart, MdDoNotDisturbAlt } from "react-icons/md";
 import { TfiAnnouncement } from "react-icons/tfi";
-import "./home.css";
+import "../../style.css";
 
 export default function CourseStatus() {
   return (

@@ -1,14 +1,21 @@
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import { Link } from "react-router";
+import "../../style.css";
 
 
 export default function AssignmentEditor() {
-
-  const { aid } = useParams();
-  const assignment = db.assignments.find((assignment) => assignment._id === aid);
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find(
+    (assignment) => assignment._id === aid
+  );
 
   return (
-    <div id="wd-assignments-editor" className="ms-3" style={{maxWidth: "750px"}}>
+    <div
+      id="wd-assignments-editor"
+      className="ms-3"
+      style={{ maxWidth: "750px" }}
+    >
       <div className="mb-3">
         <label htmlFor="wd-name" className="form-label">
           <strong>{assignment?.title}</strong>
@@ -21,11 +28,7 @@ export default function AssignmentEditor() {
       </div>
 
       <div className="mb-3">
-        <textarea
-
-          rows={10}
-          className="form-control"
-        >
+        <textarea rows={10} className="form-control">
           {assignment?.description}
         </textarea>
       </div>
@@ -60,7 +63,10 @@ export default function AssignmentEditor() {
 
       <div className="row mb-3">
         <div className="col-md-3">
-          <label htmlFor="wd-display-grade-as" className="form-label text-end w-100">
+          <label
+            htmlFor="wd-display-grade-as"
+            className="form-label text-end w-100"
+          >
             Display grade as
           </label>
         </div>
@@ -73,7 +79,10 @@ export default function AssignmentEditor() {
 
       <div className="row mb-3">
         <div className="col-md-3">
-          <label htmlFor="wd-submission-type" className="form-label text-end w-100">
+          <label
+            htmlFor="wd-submission-type"
+            className="form-label text-end w-100"
+          >
             Submission Type
           </label>
         </div>
@@ -81,7 +90,9 @@ export default function AssignmentEditor() {
           <select id="wd-submission-type" className="form-select">
             <option value="online">Online</option>
           </select>
-          <div className="mt-2 mb-2"><strong>Online Entry Options</strong></div>
+          <div className="mt-2 mb-2">
+            <strong>Online Entry Options</strong>
+          </div>
           <div className="form-check">
             <input
               type="checkbox"
@@ -137,9 +148,7 @@ export default function AssignmentEditor() {
 
       <div className="row mb-3">
         <div className="col-md-3">
-          <label className="form-label text-end w-100">
-            Assign
-          </label>
+          <label className="form-label text-end w-100">Assign</label>
         </div>
         <div className="col-md-9 border border-1 rounded-2 p-3">
           <label htmlFor="wd-assign-to"> Assign to</label>
@@ -187,9 +196,21 @@ export default function AssignmentEditor() {
 
       <hr />
 
-      <div className="d-flex justify-content-end">
-        <button className="btn btn-secondary me-2">Cancel</button>
-        <button className="btn btn-danger">Save</button>
+      <div className="d-flex justify-content-end gap-3">
+        <Link
+          to={`/kambaz/Courses/${cid}/Assignments`}
+          id="ws-signin-btn"
+          className="btn btn-secondary mb-2 custom-button" style={{width: "100px"}}
+        >
+          Cancel
+        </Link>
+        <Link
+          to={`/kambaz/Courses/${cid}/Assignments`}
+          id="ws-signin-btn"
+          className="btn btn-danger mb-2" style={{width: "100px"}}
+        >
+          Save
+        </Link>
       </div>
     </div>
   );

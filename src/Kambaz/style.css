@@ -31,3 +31,15 @@
 .wd-lesson {
   border-left: 3px solid green !important;
 }
+
+.custom-button {
+  background-color: #f5f5f5 !important;
+  color: black !important;
+  border: none;
+  border: 1px solid rgb(75, 75, 75);
+}
+
+.custom-button:hover {
+  background-color: #e0e0e0 !important;
+  color: black !important; 
+}

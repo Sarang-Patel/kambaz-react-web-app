@@ -9,6 +9,8 @@ import { MdOutlineAssignment } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import "../../style.css";
+
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -38,7 +40,7 @@ export default function Assignments() {
           <Button
             variant="secondary"
             id="wd-add-assignment-group"
-            className="d-flex align-items-center"
+            className="d-flex align-items-center custom-button"
           >
             <HiOutlinePlus className="fs-6" /> Group
           </Button>
@@ -54,7 +56,7 @@ export default function Assignments() {
 
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="d-flex justify-content-between bg-secondary py-3 px-1">
+          <div className="d-flex justify-content-between py-3 px-1" style={{backgroundColor: "#f5f5f5"}}>
             <div className="d-flex align-items-center">
               <BsGripVertical className="fs-5" />
               <IoMdArrowDropdown className="me-1 fs-5" />
