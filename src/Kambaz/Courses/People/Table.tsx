@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import * as db from "../../Database";
 
 export default function PeopleTable() {
-  const { cid } = useParams();
+  const { cid } = useParams(); 
   const enrollments = db.enrollments.filter(
     (enrollment) => enrollment.course === cid
   );
