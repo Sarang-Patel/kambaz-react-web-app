@@ -1,6 +1,7 @@
 import { Button, Dropdown } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import GreenCheckmark from "./GreenCheckmark";
+import "../Home/home.css"
 
 export default function ModulesControls() {
   return (
@@ -13,7 +14,7 @@ export default function ModulesControls() {
         Module
       </Button>
       <Dropdown>
-        <Dropdown.Toggle style={{backgroundColor: "#f5f5f5"}} variant="secondary" size="lg" id="wd-publish-all-btn">
+        <Dropdown.Toggle  className="custom-button" variant="secondary" size="lg" id="wd-publish-all-btn">
           <GreenCheckmark /> Publish All
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -34,10 +35,10 @@ export default function ModulesControls() {
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <Button  size="lg" id="wd-view-progress"  style={{backgroundColor: "#f5f5f5"}} variant="secondary">
+      <Button  size="lg" id="wd-view-progress" className="custom-button"  variant="secondary">
         View Progress
       </Button>
-      <Button  size="lg" id="wd-collapse-all"  style={{backgroundColor: "#f5f5f5"}} variant="secondary">
+      <Button  size="lg" id="wd-collapse-all" className="custom-button"  variant="secondary">
         Collapse All
       </Button>
     </div>
