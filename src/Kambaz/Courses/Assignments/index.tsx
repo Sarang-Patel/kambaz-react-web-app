@@ -114,11 +114,11 @@ export default function Assignments() {
                       <br />
                       <span className="fs-6 text-danger">Multiple Modules </span>
                       <span className="fs-6">
-                        | <strong>Not available until</strong> May 6 at 12:00am
+                        | <strong>Not available until</strong> {assignment.availableTo}
                       </span>
                       <br />
                       <span className="fs-6">
-                        <strong>Due</strong> May 13 at 11:59pm | 100 pts
+                        <strong>Due</strong> {assignment.dueDate} | {assignment.points} pts
                       </span>
                     </div>
                   </div>
