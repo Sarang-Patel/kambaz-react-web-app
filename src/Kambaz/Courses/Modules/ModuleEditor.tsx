@@ -29,18 +29,16 @@ export default function ModuleEditor({
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          {" "}
-          Cancel{" "}
+          Cancel
         </Button>
         <Button
-          variant="primary"
+          variant="danger"
           onClick={() => {
             addModule();
             handleClose();
           }}
         >
-          {" "}
-          Add Module{" "}
+          Add Module
         </Button>
       </Modal.Footer>
     </Modal>

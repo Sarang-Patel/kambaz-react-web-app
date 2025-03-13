@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCurrentUser } from "./reducer";
 import { useDispatch } from "react-redux";
 import * as db from "../Database";
-import { Button, FormControl } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default function Signin() {
+
   const [credentials, setCredentials] = useState<any>({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,18 +18,25 @@ export default function Signin() {
     navigate("/Kambaz/Dashboard");
   };
 
+
   return (
     <div id="wd-signin-screen">
-      <h1>Sign in</h1>
-      <FormControl defaultValue={credentials.username}
-             onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-             className="mb-2" placeholder="username" id="wd-username" />
-      <FormControl defaultValue={credentials.password}
-             onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-             className="mb-2" placeholder="password" type="password" id="wd-password" />
-      <Button onClick={signin} id="wd-signin-btn" className="w-100" > Sign in </Button>
-      <Link id="wd-signup-link" to="/Kambaz/Account/Signup"> Sign up </Link>
+      <h3>Sign in</h3>
+      <input defaultValue={credentials.username} placeholder="username" className="wd-username form-control mb-2" onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+      /> 
+      <input
+        type="password"
+        defaultValue={credentials.password}
+        onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+        placeholder="password"
+        className="ws-password form-control mb-2"
+      />
+      <Button id="ws-signin-btn" onClick={signin} className="btn btn-primary w-100 mb-2">
+        Sign in
+      </Button>
+      <Link to="/kambaz/Account/Signup" id="ws-signup-link">
+        Sign up
+      </Link>
     </div>
-
   );
 }

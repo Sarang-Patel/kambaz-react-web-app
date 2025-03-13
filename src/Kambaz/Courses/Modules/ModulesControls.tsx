@@ -1,9 +1,9 @@
 import { Button, Dropdown } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
-import ModuleEditor from "./ModuleEditor";
 import GreenCheckmark from "./GreenCheckmark";
 import "../../style.css";
 import { useState } from "react";
+import ModuleEditor from "./ModuleEditor";
 
 export default function ModulesControls({
   moduleName,
@@ -23,13 +23,12 @@ export default function ModulesControls({
       id="wd-modules-controls"
       className="d-flex flex-row-reverse flex-wrap justify-content-start gap-2"
     >
-      <Button
-        variant="danger"
-        onClick={handleShow}
-        size="lg"
-        id="wd-add-module-btn"
-      >
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+      <Button variant="danger" onClick={handleShow}size="lg" id="wd-add-module-btn">
+        <FaPlus
+          className="position-relative me-2"
+ 
+          style={{ bottom: "1px" }}
+        />
         Module
       </Button>
       <Dropdown>
@@ -75,6 +74,7 @@ export default function ModulesControls({
       >
         Collapse All
       </Button>
+
       <ModuleEditor
         show={show}
         handleClose={handleClose}

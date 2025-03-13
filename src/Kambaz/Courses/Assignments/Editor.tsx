@@ -1,29 +1,24 @@
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router";
 import "../../style.css";
-import { addAssignment, updateAssignment } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { updateAssignment, addAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const { assignments } = useSelector((state: any) => state.assignmentReducer);
-
-  const existingAssignment = assignments.find(
-    (assignment: any) => assignment._id === aid
-  );
+  const existingAssignment = assignments.find((a: any) => a._id === aid);
 
   const [assignment, setAssignment] = useState(
     aid === "new"
       ? {
           _id: Date.now().toString(),
-          title: "",
-          description: "",
-          points: "",
+          title: "New Assignment",
+          description: "Assignment Description",
+          points: "100",
           dueDate: "",
           availableFrom: "",
           availableTo: "",
@@ -54,13 +49,14 @@ export default function AssignmentEditor() {
   }, [aid, existingAssignment]);
 
   const handleSave = () => {
-    if (aid === "new") {
+    if(aid === "new") {
       dispatch(addAssignment({...assignment, course:cid}));
-    } else {
+    }else{
       dispatch(updateAssignment(assignment));
     }
-    navigate(`/kambaz/courses/${cid}/assignments`);
-  };
+
+    navigate(`/kambaz/courses/${cid}/assigments`)
+  }
 
   return (
     <div
@@ -70,7 +66,7 @@ export default function AssignmentEditor() {
     >
       <div className="mb-3">
         <label htmlFor="wd-name" className="form-label">
-          <strong>Title</strong>
+          <strong>{assignment?.title}</strong>
         </label>
         <input
           id="wd-name"
@@ -83,7 +79,7 @@ export default function AssignmentEditor() {
       </div>
 
       <div className="mb-3">
-        <textarea
+      <textarea
           rows={10}
           className="form-control"
           value={assignment.description}
@@ -100,7 +96,7 @@ export default function AssignmentEditor() {
           </label>
         </div>
         <div className="col-md-9">
-          <input
+        <input
             id="wd-points"
             type="number"
             value={assignment.points}
@@ -221,9 +217,7 @@ export default function AssignmentEditor() {
             id="wd-assign-to"
             value="Everyone"
             className="form-control"
-            readOnly
           />
-
           <label htmlFor="wd-due-date" className="form-label mt-3">
             Due
           </label>
@@ -277,19 +271,22 @@ export default function AssignmentEditor() {
 
       <div className="d-flex justify-content-end gap-3">
         <Link
-          to={`/kambaz/courses/${cid}/assignments`}
-          className="btn btn-secondary mb-2"
+          to={`/kambaz/Courses/${cid}/Assignments`}
+          id="ws-signin-btn"
+          className="btn btn-secondary mb-2 custom-button"
           style={{ width: "100px" }}
         >
           Cancel
         </Link>
-        <Button
+        <Link
+          to={`/kambaz/Courses/${cid}/Assignments`}
+          id="ws-signin-btn"
           className="btn btn-danger mb-2"
           style={{ width: "100px" }}
           onClick={handleSave}
         >
           Save
-        </Button>
+        </Link>
       </div>
     </div>
   );

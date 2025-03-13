@@ -7,11 +7,13 @@ import CourseNavigation from "./Navigation";
 import { Navigate, NavLink, Route, Routes, useParams, useLocation } from "react-router";
 import Table from "./People/Table";
 import NavigationMobile from "./NavigationMobile";
+import { useSelector } from "react-redux";
 
-export default function Courses({ courses }: { courses: any[]; }) {
+export default function Courses() {
   const {cid} = useParams();
   const {pathname} = useLocation();
-  const course = courses.find((course) => course._id === cid);
+  const {courses} = useSelector((state: any) => state.coursesReducer);
+  const course = courses.find((course : any) => course._id === cid);
   return (
     <div id="wd-courses" className="w-100"> 
       <div className="d-flex align-items-center">
