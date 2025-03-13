@@ -1,6 +1,6 @@
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import * as db from "../Database";

@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "../../style.css";
 import { useNavigate } from "react-router-dom";
-import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from "./reducer";
+import { deleteAssignment, editAssignment } from "./reducer";
 
 
 export default function Assignments() {
