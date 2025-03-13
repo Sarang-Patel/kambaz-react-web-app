@@ -7,16 +7,26 @@ import { BsGripVertical } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { MdOutlineAssignment } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { useParams } from "react-router";
-import * as db from "../../Database";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "../../style.css";
+import { useNavigate } from "react-router-dom";
+import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from "./reducer";
 
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments.filter(
-    (assignment) => assignment.course === cid
-  );
+ 
+
+  const dispatch = useDispatch();
+  
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  
+  const navigate = useNavigate();
+
+  
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
 
   return (
     <div id="wd-assignments" className="w-100">
@@ -36,27 +46,34 @@ export default function Assignments() {
             className="form-control border-start-0 rounded-0 p-0"
           />
         </div>
-        <div className="d-flex gap-2">
-          <Button
-            variant="secondary"
-            id="wd-add-assignment-group"
-            className="d-flex align-items-center custom-button"
-          >
-            <HiOutlinePlus className="fs-6" /> Group
-          </Button>
-          <Button
-            variant="danger"
-            id="wd-add-assignment"
-            className="d-flex align-items-center"
-          >
-            <HiOutlinePlus className="fs-6" /> Assignment
-          </Button>
-        </div>
+
+        {isFaculty && (
+          <div className="d-flex gap-2">
+            <Button
+              variant="secondary"
+              id="wd-add-assignment-group"
+              className="d-flex align-items-center custom-button"
+            >
+              <HiOutlinePlus className="fs-6" /> Group
+            </Button>
+            <Button
+              variant="danger"
+              id="wd-add-assignment"
+              className="d-flex align-items-center"
+              onClick={() => navigate("/Kambaz/Courses/CS1234/Assignments/new")}
+            >
+              <HiOutlinePlus className="fs-6" /> Assignment
+            </Button>
+          </div>
+        )}
       </div>
 
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="d-flex justify-content-between py-3 px-1" style={{backgroundColor: "#f5f5f5"}}>
+          <div
+            className="d-flex justify-content-between py-3 px-1"
+            style={{ backgroundColor: "#f5f5f5" }}
+          >
             <div className="d-flex align-items-center">
               <BsGripVertical className="fs-5" />
               <IoMdArrowDropdown className="me-1 fs-5" />
@@ -64,18 +81,22 @@ export default function Assignments() {
                 ASSIGNMENTS
               </h3>
             </div>
-            <div className="d-flex align-items-center gap-1">
-              <span className="border border-1 rounded-5 px-2 border-black fs-6">
-                40% of Total
-              </span>
-              <button className="border-0 bg-secondary">
-                <HiOutlinePlus className="fs-6" />
-              </button>
-              <IoEllipsisVertical className="fs-5" />
-            </div>
+
+            {isFaculty && (
+              <div className="d-flex align-items-center gap-1">
+                <span className="border border-1 rounded-5 px-2 border-black fs-6">
+                  40% of Total
+                </span>
+                <button className="border-0 bg-secondary">
+                  <HiOutlinePlus className="fs-6" />
+                </button>
+                <IoEllipsisVertical className="fs-5" />
+              </div>
+            )}
           </div>
+
           <ListGroup id="wd-assignment-list">
-            {assignments.map((assignment) => (
+            {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => (
               <ListGroup.Item
                 key={assignment._id}
                 className="wd-assignment-list-item rounded-0 d-flex align-items-center justify-content-between"
@@ -86,12 +107,16 @@ export default function Assignments() {
                     <MdOutlineAssignment className="text-success fs-4" />
                   </div>
                   <div className="details-group">
-                    <Link
-                      to={`${assignment._id}`}
-                      className="wd-assignment-link text-decoration-none text-black fs-5"
-                    >
-                      {assignment.title}
-                    </Link>
+                    {isFaculty ? (
+                      <Link
+                        to={`${assignment._id}`}
+                        className="wd-assignment-link text-decoration-none text-black fs-5"
+                      >
+                        {assignment.title}
+                      </Link>
+                    ) : (
+                      <span className="fs-5">{assignment.title}</span>
+                    )}
                     <br />
                     <span className="fs-6 text-danger">Multiple Modules </span>
                     <span className="fs-6">
@@ -103,7 +128,16 @@ export default function Assignments() {
                     </span>
                   </div>
                 </div>
-                <LessonControlButtons />
+
+                {isFaculty && (
+                  <LessonControlButtons
+                    moduleId={assignment._id}
+                    deleteModule={(moduleId) =>
+                      dispatch(deleteAssignment(moduleId))
+                    }
+                    editModule={(moduleId) => dispatch(editAssignment(moduleId))}
+                  />
+                )}
               </ListGroup.Item>
             ))}
           </ListGroup>

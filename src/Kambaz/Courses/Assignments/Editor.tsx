@@ -1,14 +1,66 @@
-import { useParams } from "react-router";
-import * as db from "../../Database";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "../../style.css";
-
+import { addAssignment, updateAssignment } from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignment = db.assignments.find(
-    (assignment) => assignment._id === aid
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+
+  const existingAssignment = assignments.find(
+    (assignment: any) => assignment._id === aid
   );
+
+  const [assignment, setAssignment] = useState(
+    aid === "new"
+      ? {
+          _id: Date.now().toString(),
+          title: "",
+          description: "",
+          points: "",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
+      : existingAssignment || {
+          title: "",
+          description: "",
+          points: "",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
+  );
+
+  useEffect(() => {
+    if (aid !== "new") {
+      setAssignment(
+        existingAssignment || {
+          title: "",
+          description: "",
+          points: "",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
+      );
+    }
+  }, [aid, existingAssignment]);
+
+  const handleSave = () => {
+    if (aid === "new") {
+      dispatch(addAssignment(assignment));
+    } else {
+      dispatch(updateAssignment(assignment));
+    }
+    navigate(`/kambaz/courses/${cid}/assignments`);
+  };
 
   return (
     <div
@@ -18,19 +70,27 @@ export default function AssignmentEditor() {
     >
       <div className="mb-3">
         <label htmlFor="wd-name" className="form-label">
-          <strong>{assignment?.title}</strong>
+          <strong>Title</strong>
         </label>
         <input
           id="wd-name"
-          value={assignment?.title}
+          value={assignment.title}
           className="form-control"
+          onChange={(e) =>
+            setAssignment({ ...assignment, title: e.target.value })
+          }
         />
       </div>
 
       <div className="mb-3">
-        <textarea rows={10} className="form-control">
-          {assignment?.description}
-        </textarea>
+        <textarea
+          rows={10}
+          className="form-control"
+          value={assignment.description}
+          onChange={(e) =>
+            setAssignment({ ...assignment, description: e.target.value })
+          }
+        />
       </div>
 
       <div className="row mb-3">
@@ -42,8 +102,12 @@ export default function AssignmentEditor() {
         <div className="col-md-9">
           <input
             id="wd-points"
-            value={assignment?.points}
+            type="number"
+            value={assignment.points}
             className="form-control"
+            onChange={(e) =>
+              setAssignment({ ...assignment, points: e.target.value })
+            }
           />
         </div>
       </div>
@@ -157,16 +221,22 @@ export default function AssignmentEditor() {
             id="wd-assign-to"
             value="Everyone"
             className="form-control"
+            readOnly
           />
+
           <label htmlFor="wd-due-date" className="form-label mt-3">
             Due
           </label>
           <input
             type="date"
             id="wd-due-date"
-            value={assignment?.dueDate}
+            value={assignment.dueDate}
             className="form-control"
+            onChange={(e) =>
+              setAssignment({ ...assignment, dueDate: e.target.value })
+            }
           />
+
           <div className="d-flex w-100 mt-3 gap-2">
             <div className="w-50">
               <label htmlFor="wd-available-from" className="form-label">
@@ -175,8 +245,14 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-from"
-                value={assignment?.availableFrom}
+                value={assignment.availableFrom}
                 className="form-control"
+                onChange={(e) =>
+                  setAssignment({
+                    ...assignment,
+                    availableFrom: e.target.value,
+                  })
+                }
               />
             </div>
             <div className="w-50">
@@ -186,8 +262,11 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-until"
-                value={assignment?.availableTo}
+                value={assignment.availableTo}
                 className="form-control"
+                onChange={(e) =>
+                  setAssignment({ ...assignment, availableTo: e.target.value })
+                }
               />
             </div>
           </div>
@@ -198,19 +277,19 @@ export default function AssignmentEditor() {
 
       <div className="d-flex justify-content-end gap-3">
         <Link
-          to={`/kambaz/Courses/${cid}/Assignments`}
-          id="ws-signin-btn"
-          className="btn btn-secondary mb-2 custom-button" style={{width: "100px"}}
+          to={`/kambaz/courses/${cid}/assignments`}
+          className="btn btn-secondary mb-2"
+          style={{ width: "100px" }}
         >
           Cancel
         </Link>
-        <Link
-          to={`/kambaz/Courses/${cid}/Assignments`}
-          id="ws-signin-btn"
-          className="btn btn-danger mb-2" style={{width: "100px"}}
+        <Button
+          className="btn btn-danger mb-2"
+          style={{ width: "100px" }}
+          onClick={handleSave}
         >
           Save
-        </Link>
+        </Button>
       </div>
     </div>
   );

@@ -7,9 +7,8 @@ import CourseNavigation from "./Navigation";
 import { Navigate, NavLink, Route, Routes, useParams, useLocation } from "react-router";
 import Table from "./People/Table";
 import NavigationMobile from "./NavigationMobile";
-import {courses} from "../Database";
 
-export default function Courses() {
+export default function Courses({ courses }: { courses: any[]; }) {
   const {cid} = useParams();
   const {pathname} = useLocation();
   const course = courses.find((course) => course._id === cid);

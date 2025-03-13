@@ -25,7 +25,7 @@ export default function KambazNavigation() {
   return (
     <div
       id="wd-kambaz-navigation"
-      style={{ width: 120 }}
+      style={{ maxWidth: 120 }}
       className="list-group bg-black position-fixed top-0 bottom-0 d-none d-md-block rounded-0 z-2 pt-4"
     >
       <a
