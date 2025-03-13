@@ -15,13 +15,12 @@ const assignmentsSlice = createSlice({
       const newAssignment = {
         _id: uuidv4(),
         title: assignment.title,
-        description: assignment.description || "",
+        description: assignment.description,
         course: assignment.course,
-        dueDate: assignment.dueDate || null,
+        dueDate: assignment.dueDate,
         points: assignment.points || 100,
-        availableFrom: assignment.availableFrom || null,
-        availableTo: assignment.availableTo || null,
-        submissions: [],
+        availableFrom: assignment.availableFrom,
+        availableTo: assignment.availableTo,
       };
       state.assignments.push(newAssignment);
     },

@@ -55,7 +55,7 @@ export default function AssignmentEditor() {
 
   const handleSave = () => {
     if (aid === "new") {
-      dispatch(addAssignment(assignment));
+      dispatch(addAssignment({...assignment, course:cid}));
     } else {
       dispatch(updateAssignment(assignment));
     }
