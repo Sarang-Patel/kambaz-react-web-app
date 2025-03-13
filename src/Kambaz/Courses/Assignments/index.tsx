@@ -100,7 +100,7 @@ export default function Assignments() {
                 >
                   <div className="d-flex align-items-center gap-4">
                     <div className="d-flex">
-                      <BsGripVertical className="me-2 fs-4" />
+                      <BsGripVertical className="me-2 fs-4" /> 
                       <MdOutlineAssignment className="text-success fs-4" />
                     </div>
                     <div className="details-group">
