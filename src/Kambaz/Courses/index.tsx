@@ -7,6 +7,9 @@ import CourseNavigation from "./Navigation";
 import { Navigate, NavLink, Route, Routes, useParams, useLocation } from "react-router";
 import Table from "./People/Table";
 import NavigationMobile from "./NavigationMobile";
+import Quizzes from "./Quiz";
+import QuizDetails from "./Quiz/QuizDetails";
+import QuizEditor from "./Quiz/QuizEditor";
 
 export default function Courses({ courses }: { courses: any[]; }) {
   const {cid} = useParams();
@@ -34,6 +37,9 @@ export default function Courses({ courses }: { courses: any[]; }) {
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<Table />} />
+            <Route path="Quizzes" element={<Quizzes />}/>
+            <Route path="Quizzes/:qid" element={<QuizDetails />}/>
+            <Route path="Quizzes/:qid/*" element={<QuizEditor />}/>
             <Route path="Nav" element={<NavigationMobile />}/>
           </Routes>
         </div>
