@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "react-bootstrap";
 import { CiNoWaitingSign } from "react-icons/ci";
+import QuestionsList from "./QuestionsList";
 
 export default function QuizEditor() {
   const [activeTab, setActiveTab] = useState("details");
@@ -308,10 +309,7 @@ export default function QuizEditor() {
           }`}
           id="questions"
         >
-          <h5>Questions Content</h5>
-          <p>
-            This is where you can put the questions for the quiz or assignment.
-          </p>
+          <QuestionsList />
         </div>
       </div>
     </div>
