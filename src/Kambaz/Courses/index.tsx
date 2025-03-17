@@ -10,8 +10,32 @@ import NavigationMobile from "./NavigationMobile";
 import Quizzes from "./Quiz";
 import QuizDetails from "./Quiz/QuizDetails";
 import QuizEditor from "./Quiz/QuizEditor";
+import { useState } from "react";
 
 export default function Courses({ courses }: { courses: any[]; }) {
+
+
+  type Quiz = {
+      _id: string;
+      quizTitle: string;
+      quizType: string;
+      points: number;
+      assignmentGroup: string;
+      shuffleAnswers: boolean;
+      timeLimit: number;
+      multipleAttempts: boolean;
+      maxAttempts: number;
+      showCorrectAnswers: string;
+      accessCode: string;
+      oneQuestionAtATime: boolean;
+      webcamRequired: boolean;
+      lockQuestionsAfterAnswering: boolean;
+      dueDate: string | null;
+      availableDate: string | null;
+      untilDate: string | null;
+    };
+    const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+
   const {cid} = useParams();
   const {pathname} = useLocation();
   const course = courses.find((course) => course._id === cid);
@@ -37,9 +61,9 @@ export default function Courses({ courses }: { courses: any[]; }) {
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<Table />} />
-            <Route path="Quizzes" element={<Quizzes />}/>
-            <Route path="Quizzes/:qid" element={<QuizDetails />}/>
-            <Route path="Quizzes/:qid/*" element={<QuizEditor />}/>
+            <Route path="Quizzes" element={<Quizzes quizzes={quizzes} setQuizzes={setQuizzes}  />}/>
+            <Route path="Quizzes/:qid" element={<QuizDetails  quizzes={quizzes}/>}/>
+            <Route path="Quizzes/:qid/*" element={<QuizEditor quizzes={quizzes} setQuizzes={setQuizzes} />}/>
             <Route path="Nav" element={<NavigationMobile />}/>
           </Routes>
         </div>

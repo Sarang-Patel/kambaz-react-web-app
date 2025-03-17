@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import MCQ from "./Question types/Mcq";
 import TrueFalse from "./Question types/TrueFalse";
 import FillBlank from "./Question types/FillBlank";
+import "./quizstyle.css";
 
 export default function QuestionItem({ QUESTION_TYPES }: any) {
   const [questiontype, setQuestiontype] = useState(QUESTION_TYPES.MCQ);

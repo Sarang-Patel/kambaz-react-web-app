@@ -5,8 +5,17 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from "react-bootstrap";
 import { CiNoWaitingSign } from "react-icons/ci";
 import QuestionsList from "./QuestionsList";
+import { useParams } from "react-router-dom";
 
-export default function QuizEditor() {
+// TODO: quiz update and save 
+
+export default function QuizEditor({
+  quizzes,
+  setQuizzes,
+}: {
+  quizzes: any;
+  setQuizzes: any;
+}) {
   const [activeTab, setActiveTab] = useState("details");
 
   const [editorContent, setEditorContent] = useState("");
@@ -14,6 +23,11 @@ export default function QuizEditor() {
   const handleChange = (value: any) => {
     setEditorContent(value);
   };
+
+  const { qid } = useParams();
+
+  const [quiz, setQuiz] = useState(quizzes.find((q: any) => q._id === qid));
+  
 
   return (
     <div className="quiz-editor-section">
@@ -25,7 +39,8 @@ export default function QuizEditor() {
             Not Published
           </div>
         </div>
-      </div><hr />
+      </div>
+      <hr />
       <ul className="nav nav-tabs">
         <button
           className={`nav-link ${activeTab === "details" ? "active" : ""}`}
@@ -51,9 +66,10 @@ export default function QuizEditor() {
         >
           <input
             type="text"
-            value="Unnamed Quiz"
+            value={quiz.quizTitle}
             className="px-2 py-1 w-100 mb-4"
             style={{ maxWidth: "500px", border: "1px solid gray" }}
+            onChange={(e) => setQuiz({ ...quiz, quizTitle: e.target.value })}
           />
           <p>Quiz Instructions: </p>
           <ReactQuill
@@ -70,11 +86,15 @@ export default function QuizEditor() {
                   id="quiz-type"
                   className="px-3 py-1"
                   style={{ width: "175px" }}
+                  value={quiz.quizType}
+                  onChange={(e) =>
+                    setQuiz({ ...quiz, quizType: e.target.value })
+                  }
                 >
-                  <option value="Graded-Quiz">Graded Quiz</option>
-                  <option value="Graded-Quiz">Practice Quiz</option>
-                  <option value="Graded-Quiz">Graded Survey</option>
-                  <option value="Graded-Quiz">Ungraded Survey</option>
+                  <option value="Graded Quiz">Graded Quiz</option>
+                  <option value="Practice Quiz">Practice Quiz</option>
+                  <option value="Graded Survey">Graded Survey</option>
+                  <option value="Ungraded Survey">Ungraded Survey</option>
                 </select>
               </span>
             </li>
@@ -82,14 +102,18 @@ export default function QuizEditor() {
               <span className="details-title">Assignment Group</span>
               <span className="details-value">
                 <select
-                  id="quiz-type"
+                  id="assignment-group"
                   className="px-3 py-1"
                   style={{ width: "175px" }}
+                  value={quiz.assignmentGroup}
+                  onChange={(e) =>
+                    setQuiz({ ...quiz, assignmentGroup: e.target.value })
+                  }
                 >
-                  <option value="Graded-Quiz">Quizzes</option>
-                  <option value="Graded-Quiz">Exams</option>
-                  <option value="Graded-Quiz">Assignments</option>
-                  <option value="Graded-Quiz">Project</option>
+                  <option value="Quizzes">Quizzes</option>
+                  <option value="Exams">Exams</option>
+                  <option value="Assignments">Assignments</option>
+                  <option value="Project">Project</option>
                 </select>
               </span>
             </li>
@@ -106,7 +130,10 @@ export default function QuizEditor() {
                       name="shuffle"
                       className="me-2"
                       id="shuffleans"
-                      checked
+                      checked={quiz.shuffleAnswers}
+                      onChange={(e) =>
+                        setQuiz({ ...quiz, shuffleAnswers: e.target.checked })
+                      }
                     />
                     <label htmlFor="shuffleans">Shuffle Answers</label>
                   </div>
@@ -117,17 +144,29 @@ export default function QuizEditor() {
                         name="timelimit"
                         className="me-2"
                         id="timelimit"
-                        checked
+                        checked={quiz.timeLimit > 0}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            timeLimit: e.target.checked ? quiz.timeLimit : 0,
+                          })
+                        }
                       />
                       <label htmlFor="timelimit">Time Limit</label>
                     </div>
                     <div>
                       <input
-                        type="text"
-                        name=""
-                        value="20"
+                        type="number"
+                        name="time"
                         id="time"
+                        value={quiz.timeLimit}
                         style={{ width: "2rem", marginRight: ".6rem" }}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            timeLimit: Number(e.target.value),
+                          })
+                        }
                       />
                       <label htmlFor="time">Minutes</label>
                     </div>
@@ -146,6 +185,13 @@ export default function QuizEditor() {
                         name="multipleAttempts"
                         id="multipleAttempts"
                         className="me-2"
+                        checked={quiz.multipleAttempts}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            multipleAttempts: e.target.checked,
+                          })
+                        }
                       />
                       <label htmlFor="multipleAttempts">
                         Allow Multiple Attempts
@@ -153,11 +199,17 @@ export default function QuizEditor() {
                     </div>
                     <div>
                       <input
-                        type="text"
+                        type="number"
                         name="noOfAttempts"
                         id="noOfAttempts"
-                        value="1"
+                        value={quiz.maxAttempts}
                         style={{ width: "2rem", marginRight: "1rem" }}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            maxAttempts: Number(e.target.value),
+                          })
+                        }
                       />
                       <label htmlFor="noOfAttempts">Number Of Attempts</label>
                     </div>
@@ -173,6 +225,13 @@ export default function QuizEditor() {
                         id="show-correct-answers"
                         className="px-3 py-1"
                         style={{ width: "175px" }}
+                        value={quiz.showCorrectAnswers}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            showCorrectAnswers: e.target.value,
+                          })
+                        }
                       >
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -190,6 +249,10 @@ export default function QuizEditor() {
                         placeholder="Enter passcode"
                         className="px-3 py-1"
                         style={{ width: "175px" }}
+                        value={quiz.accessCode}
+                        onChange={(e) =>
+                          setQuiz({ ...quiz, accessCode: e.target.value })
+                        }
                       />
                     </span>
                   </div>
@@ -202,6 +265,13 @@ export default function QuizEditor() {
                         id="one-question-at-a-time"
                         className="px-3 py-1"
                         style={{ width: "175px" }}
+                        value={quiz.oneQuestionAtATime ? "Yes" : "No"}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            oneQuestionAtATime: e.target.value === "Yes",
+                          })
+                        }
                       >
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -217,6 +287,13 @@ export default function QuizEditor() {
                         id="webcam-required"
                         className="px-3 py-1"
                         style={{ width: "175px" }}
+                        value={quiz.webcamRequired ? "Yes" : "No"}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            webcamRequired: e.target.value === "Yes",
+                          })
+                        }
                       >
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -232,6 +309,14 @@ export default function QuizEditor() {
                         id="lock-questions"
                         className="px-3 py-1"
                         style={{ width: "175px" }}
+                        value={quiz.lockQuestionsAfterAnswering ? "Yes" : "No"}
+                        onChange={(e) =>
+                          setQuiz({
+                            ...quiz,
+                            lockQuestionsAfterAnswering:
+                              e.target.value === "Yes",
+                          })
+                        }
                       >
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -264,6 +349,10 @@ export default function QuizEditor() {
                           id="due-date"
                           className="px-3 py-1"
                           style={{ width: "100%" }}
+                          value={quiz.dueDate || ""}
+                          onChange={(e) =>
+                            setQuiz({ ...quiz, dueDate: e.target.value })
+                          }
                         />
                       </div>
                       <div className="d-flex gap-2">
@@ -274,6 +363,13 @@ export default function QuizEditor() {
                             id="available-date"
                             className="px-3 py-1"
                             style={{ width: "100%" }}
+                            value={quiz.availableDate || ""}
+                            onChange={(e) =>
+                              setQuiz({
+                                ...quiz,
+                                availableDate: e.target.value,
+                              })
+                            }
                           />
                         </div>
                         <div style={{ width: "50%" }}>
@@ -283,6 +379,10 @@ export default function QuizEditor() {
                             id="until-date"
                             className="px-3 py-1"
                             style={{ width: "100%" }}
+                            value={quiz.untilDate || ""}
+                            onChange={(e) =>
+                              setQuiz({ ...quiz, untilDate: e.target.value })
+                            }
                           />
                         </div>
                       </div>

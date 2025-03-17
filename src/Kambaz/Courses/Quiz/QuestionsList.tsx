@@ -9,7 +9,7 @@ const QUESTION_TYPES = {
 };
 
 export default function QuestionsList() {
-  const [questions, setQuestions] = useState([12,2,3]);
+  const [questions, setQuestions] = useState([1,2,3]);
 
   return (
     <div>
