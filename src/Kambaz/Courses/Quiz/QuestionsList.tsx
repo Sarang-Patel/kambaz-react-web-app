@@ -9,11 +9,11 @@ const QUESTION_TYPES = {
 };
 
 export default function QuestionsList() {
-  const [questions, setQuestions] = useState([1,2,3]);
+  const [questions, _setQuestions] = useState([1,2,3]);
 
   return (
     <div>
-      {questions.map((question) => (
+      {questions.map(( _ ) => (
         <QuestionItem QUESTION_TYPES={QUESTION_TYPES} />
       ))}
       <Button className="mt-3">Add Question</Button>
