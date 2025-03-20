@@ -2,20 +2,42 @@ import { Button, Dropdown } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import GreenCheckmark from "./GreenCheckmark";
 import "../../style.css";
+import { useState } from "react";
+import ModuleEditor from "./ModuleEditor";
 
+export default function ModulesControls({
+  moduleName,
+  setModuleName,
+  addModule,
+}: {
+  moduleName: string;
+  setModuleName: (title: string) => void;
+  addModule: () => void;
+}) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-export default function ModulesControls() {
   return (
     <div
       id="wd-modules-controls"
       className="d-flex flex-row-reverse flex-wrap justify-content-start gap-2"
     >
-      <Button variant="danger" size="lg" id="wd-add-module-btn">
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+      <Button variant="danger" onClick={handleShow}size="lg" id="wd-add-module-btn">
+        <FaPlus
+          className="position-relative me-2"
+ 
+          style={{ bottom: "1px" }}
+        />
         Module
       </Button>
       <Dropdown>
-        <Dropdown.Toggle  className="custom-button" variant="secondary" size="lg" id="wd-publish-all-btn">
+        <Dropdown.Toggle
+          className="custom-button"
+          variant="secondary"
+          size="lg"
+          id="wd-publish-all-btn"
+        >
           <GreenCheckmark /> Publish All
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -36,12 +58,31 @@ export default function ModulesControls() {
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <Button  size="lg" id="wd-view-progress" className="custom-button"  variant="secondary">
+      <Button
+        size="lg"
+        id="wd-view-progress"
+        className="custom-button"
+        variant="secondary"
+      >
         View Progress
       </Button>
-      <Button  size="lg" id="wd-collapse-all" className="custom-button"  variant="secondary">
+      <Button
+        size="lg"
+        id="wd-collapse-all"
+        className="custom-button"
+        variant="secondary"
+      >
         Collapse All
       </Button>
+
+      <ModuleEditor
+        show={show}
+        handleClose={handleClose}
+        dialogTitle="Add Module"
+        moduleName={moduleName}
+        setModuleName={setModuleName}
+        addModule={addModule}
+      />
     </div>
   );
 }
