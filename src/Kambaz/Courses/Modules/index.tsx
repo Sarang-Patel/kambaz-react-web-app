@@ -3,50 +3,34 @@ import ModulesControls from "./ModulesControls";
 import { BsGripVertical } from "react-icons/bs";
 import LessonControlButtons from "./LessonControlButtons";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { addModule, updateModule, deleteModule, editModule } from "./reducer";
 
 export default function Modules() {
   const { cid } = useParams();
-  const [modules, setModules] = useState<any[]>(
-    db.modules.filter((module) => module.course === cid)
-  );
+  const dispatch = useDispatch();
+
+  const {modules} = useSelector((state: any) => state.modulesReducer);
   const [moduleName, setModuleName] = useState("");
-  const addModule = () => {
-    setModules([
-      ...modules,
-      { _id: uuidv4(), name: moduleName, course: cid, lessons: [] },
-    ]);
-    setModuleName("");
-  };
-
-  const deleteModule = (moduleId: string) => {
-    setModules(modules.filter((m) => m._id !== moduleId));
-  };
-
-  const editModule = (moduleId: string) => {
-    setModules(
-      modules.map((m) => (m._id === moduleId ? { ...m, editing: true } : m))
-    );
-  };
-  const updateModule = (module: any) => {
-    setModules(modules.map((m) => (m._id === module._id ? module : m)));
-  };
+  
 
   return (
     <div>
       <ModulesControls
         setModuleName={setModuleName}
         moduleName={moduleName}
-        addModule={addModule}
+        addModule={() => {
+          dispatch(addModule({ name: moduleName, course: cid }));
+          setModuleName("");
+        }}
       />
       <br />
       <br />
       <br />
       <ListGroup className="rounded-0" id="wd-modules">
-        {modules.map((module) => (
+        {modules.filter((module: any) => module.course === cid).map((module: any) => (
           <ListGroup.Item
             key={module._id}
             className="wd-module p-0 mb-5 fs-5"
@@ -66,11 +50,11 @@ export default function Modules() {
                 <FormControl
                   className="w-50 d-inline-block"
                   onChange={(e) =>
-                    updateModule({ ...module, name: e.target.value })
+                    dispatch(updateModule({ ...module, name: e.target.value }))
                   }
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      updateModule({ ...module, editing: false });
+                      dispatch(updateModule({ ...module, editing: false }));
                     }
                   }}
                   defaultValue={module.name}
@@ -80,8 +64,10 @@ export default function Modules() {
 
               <LessonControlButtons
                 moduleId={module._id}
-                deleteModule={deleteModule}
-                editModule={editModule}
+                deleteModule={(moduleId) => {
+                  dispatch(deleteModule(moduleId));
+                }}
+                editModule={(moduleId) => dispatch(editModule(moduleId))}
               />
             </div>
             <ListGroup className="wd-lessons rounded-0">
@@ -90,8 +76,10 @@ export default function Modules() {
                   <BsGripVertical /> {lesson.name}{" "}
                   <LessonControlButtons
                     moduleId={module._id}
-                    deleteModule={deleteModule}
-                    editModule={editModule}
+                    deleteModule={(moduleId) => {
+                      dispatch(deleteModule(moduleId));
+                    }}
+                    editModule={(moduleId) => dispatch(editModule(moduleId))}
                   />
                 </ListGroup.Item>
               ))}

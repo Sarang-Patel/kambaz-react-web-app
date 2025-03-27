@@ -1,14 +1,62 @@
-import { useParams } from "react-router";
-import * as db from "../../Database";
+import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router";
 import "../../style.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { updateAssignment, addAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignment = db.assignments.find(
-    (assignment) => assignment._id === aid
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const existingAssignment = assignments.find((a: any) => a._id === aid);
+
+  const [assignment, setAssignment] = useState(
+    aid === "new"
+      ? {
+          _id: Date.now().toString(),
+          title: "New Assignment",
+          description: "Assignment Description",
+          points: "100",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
+      : existingAssignment || {
+          title: "",
+          description: "",
+          points: "",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
   );
+
+  useEffect(() => {
+    if (aid !== "new") {
+      setAssignment(
+        existingAssignment || {
+          title: "",
+          description: "",
+          points: "",
+          dueDate: "",
+          availableFrom: "",
+          availableTo: "",
+        }
+      );
+    }
+  }, [aid, existingAssignment]);
+
+  const handleSave = () => {
+    if(aid === "new") {
+      dispatch(addAssignment({...assignment, course:cid}));
+    }else{
+      dispatch(updateAssignment(assignment));
+    }
+
+    navigate(`/kambaz/courses/${cid}/assigments`)
+  }
 
   return (
     <div
@@ -22,15 +70,23 @@ export default function AssignmentEditor() {
         </label>
         <input
           id="wd-name"
-          value={assignment?.title}
+          value={assignment.title}
           className="form-control"
+          onChange={(e) =>
+            setAssignment({ ...assignment, title: e.target.value })
+          }
         />
       </div>
 
       <div className="mb-3">
-        <textarea rows={10} className="form-control">
-          {assignment?.description}
-        </textarea>
+      <textarea
+          rows={10}
+          className="form-control"
+          value={assignment.description}
+          onChange={(e) =>
+            setAssignment({ ...assignment, description: e.target.value })
+          }
+        />
       </div>
 
       <div className="row mb-3">
@@ -40,10 +96,14 @@ export default function AssignmentEditor() {
           </label>
         </div>
         <div className="col-md-9">
-          <input
+        <input
             id="wd-points"
-            value={assignment?.points}
+            type="number"
+            value={assignment.points}
             className="form-control"
+            onChange={(e) =>
+              setAssignment({ ...assignment, points: e.target.value })
+            }
           />
         </div>
       </div>
@@ -164,9 +224,13 @@ export default function AssignmentEditor() {
           <input
             type="date"
             id="wd-due-date"
-            value={assignment?.dueDate}
+            value={assignment.dueDate}
             className="form-control"
+            onChange={(e) =>
+              setAssignment({ ...assignment, dueDate: e.target.value })
+            }
           />
+
           <div className="d-flex w-100 mt-3 gap-2">
             <div className="w-50">
               <label htmlFor="wd-available-from" className="form-label">
@@ -175,8 +239,14 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-from"
-                value={assignment?.availableFrom}
+                value={assignment.availableFrom}
                 className="form-control"
+                onChange={(e) =>
+                  setAssignment({
+                    ...assignment,
+                    availableFrom: e.target.value,
+                  })
+                }
               />
             </div>
             <div className="w-50">
@@ -186,8 +256,11 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-until"
-                value={assignment?.availableTo}
+                value={assignment.availableTo}
                 className="form-control"
+                onChange={(e) =>
+                  setAssignment({ ...assignment, availableTo: e.target.value })
+                }
               />
             </div>
           </div>
@@ -200,14 +273,17 @@ export default function AssignmentEditor() {
         <Link
           to={`/kambaz/Courses/${cid}/Assignments`}
           id="ws-signin-btn"
-          className="btn btn-secondary mb-2 custom-button" style={{width: "100px"}}
+          className="btn btn-secondary mb-2 custom-button"
+          style={{ width: "100px" }}
         >
           Cancel
         </Link>
         <Link
           to={`/kambaz/Courses/${cid}/Assignments`}
           id="ws-signin-btn"
-          className="btn btn-danger mb-2" style={{width: "100px"}}
+          className="btn btn-danger mb-2"
+          style={{ width: "100px" }}
+          onClick={handleSave}
         >
           Save
         </Link>
