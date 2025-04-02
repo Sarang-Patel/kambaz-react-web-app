@@ -24,7 +24,7 @@ export default function WorkingWithObjectsAsynchronously() {
         className="mb-2"
         onChange={(e) =>
           setAssignment({ ...assignment, title: e.target.value })
-        }
+        } 
       />
       <FormControl
         defaultValue={assignment.description}
