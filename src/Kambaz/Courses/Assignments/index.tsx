@@ -69,7 +69,7 @@ export default function Assignments() {
 
         {isFaculty && (
           <div className="d-flex gap-2">
-            <Button variant="secondary" className="d-flex align-items-center">
+            <Button variant="secondary" style={{backgroundColor: "#f5f5f5"}} className="d-flex align-items-center">
               <HiOutlinePlus className="fs-6" /> Group
             </Button>
             <Button
@@ -102,7 +102,7 @@ export default function Assignments() {
                 <span className="border border-1 rounded-5 px-2 border-black fs-6">
                   40% of Total
                 </span>
-                <button className="border-0 bg-secondary">
+                <button className="border-0 ">
                   <HiOutlinePlus className="fs-6" />
                 </button>
                 <IoEllipsisVertical className="fs-5" />

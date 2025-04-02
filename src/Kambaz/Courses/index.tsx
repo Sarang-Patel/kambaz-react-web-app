@@ -17,6 +17,8 @@ export default function Courses() {
   const {pathname} = useLocation();
   const [courses, setCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  const isFaculty = currentUser?.role === "FACULTY";
   
     const fetchCourses = async () => {
       try {
@@ -47,8 +49,8 @@ export default function Courses() {
         <div className="flex-fill">
           <Routes>
             <Route path="/" element={<Navigate to="Home" />} />
-            <Route path="Home" element={<Home />} />
-            <Route path="Modules" element={<Modules />} />
+            <Route path="Home" element={<Home isFaculty = {isFaculty}/>} />
+            <Route path="Modules" element={<Modules isFaculty = {isFaculty}/>} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<Table />} />
