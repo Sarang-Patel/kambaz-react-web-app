@@ -4,6 +4,8 @@ import "../../style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { updateAssignment, addAssignment } from "./reducer";
+import * as assignmentClient from "./client";
+import * as courseClient from "../client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -48,15 +50,27 @@ export default function AssignmentEditor() {
     }
   }, [aid, existingAssignment]);
 
-  const handleSave = () => {
-    if(aid === "new") {
-      dispatch(addAssignment({...assignment, course:cid}));
-    }else{
-      dispatch(updateAssignment(assignment));
+  const handleSave = async () => {
+    try {
+      let savedAssignment;
+      
+      if (aid === "new") {
+        savedAssignment = await courseClient.createAssignmentForCourse(cid as string, {
+          ...assignment,
+          course: cid as string,
+        });
+        dispatch(addAssignment(savedAssignment));
+      } else {
+        savedAssignment = await assignmentClient.updateAssignment(assignment);
+        dispatch(updateAssignment(savedAssignment));
+      }
+  
+      navigate(`/kambaz/courses/${cid}/assignments`);
+    } catch (error) {
+      console.error("Error saving assignment:", error);
     }
-
-    navigate(`/kambaz/courses/${cid}/assigments`)
-  }
+  };
+  
 
   return (
     <div

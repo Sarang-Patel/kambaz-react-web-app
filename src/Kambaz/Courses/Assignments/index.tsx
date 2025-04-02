@@ -8,9 +8,12 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteAssignment } from "./reducer";
-import { useState } from "react";
+import { setAssignments, deleteAssignment } from "./reducer";
+
+import { useEffect, useState } from "react";
 import "../../style.css";
+import * as coursesClient from "../client";
+import * as assignmentClient from "../Assignments/client";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -20,6 +23,17 @@ export default function Assignments() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
 
+  const fetchAssignments = async () => {
+    const fetchedAssignments = await coursesClient.findAssignmentsForCourse(
+      cid as string
+    );
+    console.log(fetchedAssignments);
+    dispatch(setAssignments(fetchedAssignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
   const [showModal, setShowModal] = useState(false);
   const [selectedAssignment, setSelectedAssignment] = useState<any>(null);
 
@@ -28,8 +42,9 @@ export default function Assignments() {
     setShowModal(true);
   }
 
-  function confirmDelete() {
+  async function confirmDelete() {
     if (selectedAssignment) {
+      await assignmentClient.deleteAssignment(selectedAssignment._id);
       dispatch(deleteAssignment(selectedAssignment._id));
     }
     setShowModal(false);
@@ -70,11 +85,16 @@ export default function Assignments() {
 
       <ListGroup className="rounded-0">
         <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="d-flex justify-content-between py-3 px-1" style={{ backgroundColor: "#f5f5f5" }}>
+          <div
+            className="d-flex justify-content-between py-3 px-1"
+            style={{ backgroundColor: "#f5f5f5" }}
+          >
             <div className="d-flex align-items-center">
               <BsGripVertical className="fs-5" />
               <IoMdArrowDropdown className="me-1 fs-5" />
-              <h3 id="wd-assignments-title" className="fs-5 mb-0">ASSIGNMENTS</h3>
+              <h3 id="wd-assignments-title" className="fs-5 mb-0">
+                ASSIGNMENTS
+              </h3>
             </div>
 
             {isFaculty && (
@@ -105,26 +125,36 @@ export default function Assignments() {
                     </div>
                     <div className="details-group">
                       {isFaculty ? (
-                        <Link to={`${assignment._id}`} className="text-decoration-none text-black fs-5">
+                        <Link
+                          to={`${assignment._id}`}
+                          className="text-decoration-none text-black fs-5"
+                        >
                           {assignment.title}
                         </Link>
                       ) : (
                         <span className="fs-5">{assignment.title}</span>
                       )}
                       <br />
-                      <span className="fs-6 text-danger">Multiple Modules </span>
+                      <span className="fs-6 text-danger">
+                        Multiple Modules{" "}
+                      </span>
                       <span className="fs-6">
-                        | <strong>Not available until</strong> {assignment.availableTo}
+                        | <strong>Not available until</strong>{" "}
+                        {assignment.availableTo}
                       </span>
                       <br />
                       <span className="fs-6">
-                        <strong>Due</strong> {assignment.dueDate} | {assignment.points} pts
+                        <strong>Due</strong> {assignment.dueDate} |{" "}
+                        {assignment.points} pts
                       </span>
                     </div>
                   </div>
 
                   {isFaculty && (
-                    <Button variant="danger" onClick={() => handleAssignmentDelete(assignment)}>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleAssignmentDelete(assignment)}
+                    >
                       Delete
                     </Button>
                   )}
@@ -139,7 +169,8 @@ export default function Assignments() {
           <Modal.Title>Confirm Deletion</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete <strong>{selectedAssignment?.title}</strong>?
+          Are you sure you want to delete{" "}
+          <strong>{selectedAssignment?.title}</strong>?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>

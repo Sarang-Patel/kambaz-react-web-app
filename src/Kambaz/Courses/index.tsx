@@ -7,12 +7,28 @@ import CourseNavigation from "./Navigation";
 import { Navigate, NavLink, Route, Routes, useParams, useLocation } from "react-router";
 import Table from "./People/Table";
 import NavigationMobile from "./NavigationMobile";
+import * as userClient from "../Account/client";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 
 export default function Courses() {
   const {cid} = useParams();
   const {pathname} = useLocation();
-  const {courses} = useSelector((state: any) => state.coursesReducer);
+  const [courses, setCourses] = useState<any[]>([]);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  
+    const fetchCourses = async () => {
+      try {
+        const courses = await userClient.findMyCourses();
+        setCourses(courses);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      useEffect(() => {
+        fetchCourses();
+      }, [currentUser]);
   const course = courses.find((course : any) => course._id === cid);
   return (
     <div id="wd-courses" className="w-100"> 

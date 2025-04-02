@@ -12,7 +12,7 @@ import Lab5 from "./Lab5";
 export default function Labs() {
   return (
     <Provider store={store}>
-      <div id="wd-labs">
+      <div id="wd-labs" className="p-4">
         <h1>Labs</h1>
         <hr />
         <h2>
