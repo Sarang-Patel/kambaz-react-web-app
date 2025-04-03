@@ -93,7 +93,8 @@ export default function Dashboard() {
   const handleEnroll = async (courseId: string) => {
     try {
       await userClient.enrollCourse(courseId);
-      setCourses([...courses, { _id: courseId }]);
+      const enrolledCourse = allCourses.find(course => course._id === courseId);
+      setCourses([...courses, enrolledCourse]);
     } catch (error) {
       console.error("Error enrolling in course:", error);
     }
