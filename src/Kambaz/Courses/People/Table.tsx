@@ -2,7 +2,21 @@ import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import PeopleDetails from "./Details";
 import { Link } from "react-router-dom";
-export default function PeopleTable({ users = [] }: { users?: any[] }) {
+import * as courseClient from "../client";
+import { useEffect, useState } from "react";
+
+export default function PeopleTable({cid}: any) {
+  const [users, setUsers] = useState([]);
+  const fetchUsers = async () => {
+    setUsers(await courseClient.findUsersForCourse(cid));
+  }
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  console.log(users);
+  
   return (
     <div id="wd-people-table">
       <PeopleDetails />
@@ -18,7 +32,7 @@ export default function PeopleTable({ users = [] }: { users?: any[] }) {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.map((user : any) => (
             <tr key={user._id}>
               <td className="wd-full-name text-nowrap">
                 <Link

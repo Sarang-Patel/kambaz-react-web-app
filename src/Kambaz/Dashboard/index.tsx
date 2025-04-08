@@ -21,16 +21,16 @@ export default function Dashboard() {
     image_url: "images/default.jpeg",
     description: "New Description",
   });
-
-  const [showAllCourses, setShowAllCourses] = useState(false);
   const navigate = useNavigate();
+  const [showAllCourses, setShowAllCourses] = useState(false);
 
   const [courses, setCourses] = useState<any[]>([]);
 
   const fetchCourses = async () => {
     try {
-      const courses = await userClient.findMyCourses();
+      const courses = await userClient.findCoursesForUser(currentUser._id);
       setCourses(courses);
+      console.log(courses);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +53,7 @@ export default function Dashboard() {
   }, [currentUser]);
 
   const addNewCourse = async () => {
-    const newCourse = await userClient.createCourse(course);
+    const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse]);
     setAllCourses([...allCourses, newCourse]);
   };
@@ -92,24 +92,24 @@ export default function Dashboard() {
 
   const handleEnroll = async (courseId: string) => {
     try {
-      await userClient.enrollCourse(courseId);
-      const enrolledCourse = allCourses.find(course => course._id === courseId);
+      await userClient.enrollIntoCourse(currentUser._id, courseId);
+      const enrolledCourse = allCourses.find(
+        (course) => course._id === courseId
+      );
       setCourses([...courses, enrolledCourse]);
     } catch (error) {
       console.error("Error enrolling in course:", error);
     }
   };
-  
 
   const handleUnenroll = async (courseId: string) => {
     try {
-      await userClient.unenrollCourse(courseId);
-      setCourses(courses.filter(course => course._id !== courseId));
+      await userClient.unenrollFromCourse(currentUser._id, courseId);
+      setCourses(courses.filter((course) => course._id !== courseId));
     } catch (error) {
       console.error("Error unenrolling from course:", error);
     }
   };
-  
 
   const handleCourseNavigation = (courseId: string) => {
     if (isEnrolled(courseId)) {
@@ -135,7 +135,7 @@ export default function Dashboard() {
             onClick={() => setShowAllCourses(!showAllCourses)}
             className={`${showAllCourses ? "btn-danger" : "btn-primary"}`}
           >
-            Enrollments
+            {showAllCourses ? "Show Enrolled Courses" : "All courses"}
           </Button>
         </div>
         <hr />
@@ -188,7 +188,7 @@ export default function Dashboard() {
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
           {(showAllCourses ? allCourses : courses).map((course: any) => (
-            <Col id={course._id} style={{ width: "350px" }}>
+            <Col id={course._id} style={{ width: "350px"}}>
               <Card>
                 <Card.Img
                   variant="top"
@@ -214,23 +214,24 @@ export default function Dashboard() {
                     >
                       {course.name}
                     </Card.Title>
-                    {isEnrolled(course._id) ? (
-                      <Button
-                        variant="danger"
-                        className="float-end"
-                        onClick={() => handleUnenroll(course._id)}
-                      >
-                        Unenroll
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="success"
-                        className="float-end"
-                        onClick={() => handleEnroll(course._id)}
-                      >
-                        Enroll
-                      </Button>
-                    )}
+                    {showAllCourses &&
+                      (isEnrolled(course._id) ? (
+                        <Button
+                          variant="danger"
+                          className="float-end"
+                          onClick={() => handleUnenroll(course._id)}
+                        >
+                          Unenroll
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="success"
+                          className="float-end"
+                          onClick={() => handleEnroll(course._id)}
+                        >
+                          Enroll
+                        </Button>
+                      ))}
                   </div>
                   <Card.Text
                     className="wd-dashboard-course-title"
@@ -241,6 +242,7 @@ export default function Dashboard() {
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
+                      minHeight:"50px"
                     }}
                   >
                     {course.description}

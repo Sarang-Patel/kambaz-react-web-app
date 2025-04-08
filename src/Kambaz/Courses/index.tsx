@@ -22,7 +22,7 @@ export default function Courses() {
   
     const fetchCourses = async () => {
       try {
-        const courses = await userClient.findMyCourses();
+        const courses = await userClient.findCoursesForUser(currentUser._id);
         setCourses(courses);
       } catch (error) {
         console.error(error);
@@ -53,7 +53,7 @@ export default function Courses() {
             <Route path="Modules" element={<Modules isFaculty = {isFaculty}/>} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-            <Route path="People" element={<Table />} />
+            <Route path="People" element={<Table cid = {cid}/>} />
             <Route path="Nav" element={<NavigationMobile />}/>
           </Routes>
         </div>
