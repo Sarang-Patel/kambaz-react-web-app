@@ -75,7 +75,7 @@ export default function Assignments() {
             <Button
               variant="danger"
               className="d-flex align-items-center"
-              onClick={() => navigate("/Kambaz/Courses/CS1234/Assignments/new")}
+              onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments/new`)}
             >
               <HiOutlinePlus className="fs-6" /> Assignment
             </Button>

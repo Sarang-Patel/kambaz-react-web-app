@@ -270,7 +270,7 @@ export default function AssignmentEditor() {
               <input
                 type="date"
                 id="wd-available-until"
-                value={assignment.availableTo}
+                defaultValue={assignment.availableTo}
                 className="form-control"
                 onChange={(e) =>
                   setAssignment({ ...assignment, availableTo: e.target.value })
