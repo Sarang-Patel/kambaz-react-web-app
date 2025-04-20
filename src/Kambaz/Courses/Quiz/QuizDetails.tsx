@@ -12,9 +12,18 @@ export default function QuizDetails() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser.role === "FACULTY" ? true : false;
   const quiz = quizzes.find((q: any) => q._id === qid);
-  const availableDate = new Date(quiz.availableDate);
-  const availableUntilDate = new Date(quiz.untilDate);
-  const dueDate = new Date(quiz.dueDate);
+  var availableDate = new Date(quiz.availableDate);
+  availableDate.setDate(availableDate.getDate() + 1)
+
+  var availableUntilDate = new Date(quiz.untilDate);
+  availableUntilDate.setDate(availableUntilDate.getDate() + 1)
+
+
+
+  var dueDate = new Date(quiz.dueDate);
+  dueDate.setDate(dueDate.getDate() + 1)
+
+
   const [submissions, setSubmissions] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 

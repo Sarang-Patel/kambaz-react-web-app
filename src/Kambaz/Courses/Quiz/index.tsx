@@ -32,8 +32,11 @@ export default function Quizzes() {
 
   function getAvailabilityStatus(q: any) {
     const today = new Date();
-    const availableDate = new Date(q.availableDate);
-    const availableUntilDate = new Date(q.untilDate);
+    var availableDate = new Date(q.availableDate);
+    availableDate.setDate(availableDate.getDate() + 1)
+    var availableUntilDate = new Date(q.untilDate);
+    availableUntilDate.setDate(availableUntilDate.getDate() + 1)
+
     if (today > availableUntilDate) {
       return "Closed";
     } else if (today >= availableDate && today <= availableUntilDate) {
@@ -170,7 +173,7 @@ export default function Quizzes() {
                       {getAvailabilityStatus(q)} &nbsp;&nbsp;| &nbsp;&nbsp;{" "}
                       <b>Due</b>{" "}
                       {q.dueDate
-                        ? new Date(q.dueDate).toLocaleDateString(undefined, {
+                        ? new Date(new Date(q.dueDate).setDate(new Date(q.dueDate).getDate() + 1)).toLocaleDateString(undefined, {
                             year: "numeric",
                             month: "short",
                             day: "numeric",
