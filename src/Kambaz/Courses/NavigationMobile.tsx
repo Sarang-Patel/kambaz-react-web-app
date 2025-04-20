@@ -1,10 +1,11 @@
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 
 export default function NavigationMobile() {
+  const {cid} = useParams();
   return (
     <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
       <NavLink
-        to="/Kambaz/Courses/1234/Home"
+        to={`/Kambaz/Courses/${cid}/Home`}
         id="wd-course-home-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -19,7 +20,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Modules"
+        to={"/Kambaz/Courses/${cid}/Modules"}
         id="wd-course-modules-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -34,7 +35,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Piazza"
+        to={"/Kambaz/Courses/${cid}/Piazza"}
         id="wd-course-piazza-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -49,7 +50,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Zoom"
+        to={"/Kambaz/Courses/${cid}/Zoom"}
         id="wd-course-zoom-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -64,7 +65,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Assignments"
+        to={"/Kambaz/Courses/${cid}/Assignments"}
         id="wd-course-quizzes-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -79,7 +80,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Quizzes"
+        to={`/Kambaz/Courses/${cid}/Quizzes`}
         id="wd-course-assignments-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -94,7 +95,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/Grades"
+        to={"/Kambaz/Courses/${cid}/Grades"}
         id="wd-course-grades-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${
@@ -109,7 +110,7 @@ export default function NavigationMobile() {
       </NavLink>
       <br />
       <NavLink
-        to="/Kambaz/Courses/1234/People"
+        to={"/Kambaz/Courses/${cid}/People"}
         id="wd-course-people-link"
         className={({ isActive }) =>
           `list-group-item border border-0 ${

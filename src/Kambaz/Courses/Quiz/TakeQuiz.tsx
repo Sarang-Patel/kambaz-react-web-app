@@ -10,6 +10,7 @@ import { createQuizSubmission } from "./client";
 export default function TakQuiz() {
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const { qid } = useParams();
+  const {cid} = useParams();
   const quiz = quizzes.find((q: any) => q._id === qid);
   const questions = quiz.questions;
   const [current, setCurrent] = useState(0);
@@ -81,7 +82,7 @@ export default function TakQuiz() {
     };
 
     await createQuizSubmission(submission);
-    navigate(`/Kambaz/Courses/CS1234/Quizzes/${qid}/results`);
+    navigate(`/Kambaz/Courses/${cid}/Quizzes/${qid}/results`);
   };
 
   if (!quiz) return <div>Loading...</div>;

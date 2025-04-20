@@ -17,6 +17,8 @@ export default function Profile() {
   const updateProfile = async () => {
     const updatedProfile = await client.updateUser(profile);
     dispatch(setCurrentUser(updatedProfile));
+    alert("Your profile has been updated.");
+    window.location.reload();
   };
 
   const signout = async () => {
@@ -86,6 +88,7 @@ export default function Profile() {
             onChange={(e) => setProfile({ ...profile, role: e.target.value })}
             className="form-control mb-2"
             id="wd-role"
+            value={profile.role}
           >
             <option value="USER">User</option>{" "}
             <option value="ADMIN">Admin</option>
