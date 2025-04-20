@@ -19,6 +19,11 @@ export default function MCQ({ question, setQuestion, isediting }: any) {
     setQuestion({ ...question, questionText: e.target.value });
   };
   
+  function deleteBlankAnswer(index: number): void {
+    const updatedOptions = question.options.filter((_: any, i: number) => i !== index);
+    setQuestion({ ...question, options: updatedOptions });
+  }
+
   return (
     <div className="mcq-question my-3">
       <p>Enter your question and choices. Select one as the correct ans.</p>
@@ -47,7 +52,16 @@ export default function MCQ({ question, setQuestion, isediting }: any) {
             className="form-control ms-2"
             style={{ border: "1px solid gray" }}
           />
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => deleteBlankAnswer(index)}
+            className="ms-2"
+          >
+            ✕
+          </Button>
         </div>
+        
       ))}
       <Button variant="secondary" className="details-screen-button px-3" onClick={addOption} style={{ borderRadius: 0 }} disabled ={isediting}>
         Add Option
