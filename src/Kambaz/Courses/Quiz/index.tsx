@@ -21,7 +21,7 @@ export default function Quizzes() {
   const { cid }: any = useParams();
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const [submissions, setSubmissions] = useState<{ [key: string]: any }>({});
-  
+
   const toggleContextMenu = (_id: any) => {
     if (isContextMenuVisible === "none") {
       setisContextMenuVisible(_id);
@@ -33,9 +33,9 @@ export default function Quizzes() {
   function getAvailabilityStatus(q: any) {
     const today = new Date();
     var availableDate = new Date(q.availableDate);
-    availableDate.setDate(availableDate.getDate() + 1)
+    availableDate.setDate(availableDate.getDate() + 1);
     var availableUntilDate = new Date(q.untilDate);
-    availableUntilDate.setDate(availableUntilDate.getDate() + 1)
+    availableUntilDate.setDate(availableUntilDate.getDate() + 1);
 
     if (today > availableUntilDate) {
       return "Closed";
@@ -173,7 +173,11 @@ export default function Quizzes() {
                       {getAvailabilityStatus(q)} &nbsp;&nbsp;| &nbsp;&nbsp;{" "}
                       <b>Due</b>{" "}
                       {q.dueDate
-                        ? new Date(new Date(q.dueDate).setDate(new Date(q.dueDate).getDate() + 1)).toLocaleDateString(undefined, {
+                        ? new Date(
+                            new Date(q.dueDate).setDate(
+                              new Date(q.dueDate).getDate() + 1
+                            )
+                          ).toLocaleDateString(undefined, {
                             year: "numeric",
                             month: "short",
                             day: "numeric",
@@ -181,12 +185,15 @@ export default function Quizzes() {
                         : "N/A"}{" "}
                       &nbsp;&nbsp;| &nbsp;&nbsp;
                       {q.points} pts &nbsp;&nbsp;|&nbsp;&nbsp;{" "}
-                      {q.questions.length} Questions &nbsp;&nbsp;|&nbsp;&nbsp;{" "}
-                      <b>
-                        {submissions[q._id]?.score !== undefined
-                          ? `${submissions[q._id].score} points`
-                          : "Not Attempted"}
-                      </b>
+                      {q.questions.length} Questions &nbsp;&nbsp;
+                      {!isFaculty && (
+                        <b>
+                          | &nbsp;&nbsp;
+                          {submissions[q._id]?.score !== undefined
+                            ? `${submissions[q._id].score} points`
+                            : "Not Attempted"}
+                        </b>
+                      )}
                     </div>
                   </div>
                 </div>
