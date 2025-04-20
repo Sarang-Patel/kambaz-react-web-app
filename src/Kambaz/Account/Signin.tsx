@@ -19,8 +19,6 @@ export default function Signin() {
   return (
     <div id="wd-signin-screen">
       <h3>Sign in</h3>
-      <p>iron_man <br /> stark123</p>
-      <p>dark_knight <br /> wayne123</p>
       <input
         defaultValue={credentials.username}
         placeholder="username"
