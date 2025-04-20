@@ -30,7 +30,6 @@ export default function Dashboard() {
     try {
       const courses = await userClient.findCoursesForUser(currentUser._id);
       setCourses(courses);
-      console.log(courses);
     } catch (error) {
       console.error(error);
     }

@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Roboto";
+}
+
+.context-menu-button-hover {
+  background-color: #f5f5f5;
+  color: black;
+  border: none;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+}
+
+.context-menu-button-hover:hover,
+.details-screen-button:hover {
+  background-color: #dc3545;
+  color: white;
+  border: 0;
+}
+
+.details-screen-button, .details-screen-button:disabled {
+  background-color: #f5f5f5;
+  border: 1px solid gray;
+  border-radius: 3px;
+  color: black;
+  padding: 6px;
+  min-width: 100px;
+}
+
+.quiz-properties {
+  width: 100%;
+}
+
+.quiz-property-title {
+  min-width: 250px;
+  text-align: right;
+  font-weight: bold;
+  margin-right: 1rem;
+  color: #212529;
+  font-size: 0.9rem;
+}
+
+.quiz-property-value {
+  font-size: 0.9rem;
+}
+
+.table tbody tr,
+thead tr {
+  border-bottom: 1px solid rgb(160, 160, 160);
+}
+
+.table th,
+.table td {
+  border: none;
+  color: #212529;
+}
+
+.nav-link,
+.nav-link:hover {
+  color: #696a6b;
+}
+
+.details-title {
+  min-width: 150px;
+  text-align: right;
+  margin-right: 1rem;
+  color: #212529;
+  font-size: 0.9rem;
+}
+
+.details-value {
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.quiz-cancel-buttons, #quiz-submit-btn, #question-next-btn, #question-prev-btn ,.quiz-edit-btn {
+background-color: #f5f5f5;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-cancel-buttons:hover, #quiz-submit-btn:hover, #question-next-btn:hover, #question-prev-btn:hover, .quiz-edit-btn:hover {
+    background-color: #dc3545;
+    color: white;
+    border: 0;
+}
+.quiz-save-buttons {
+
+  background-color: #dc3545;
+  color: white;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+  border: 0;
+}
+
+.quiz-save-buttons:hover {
+    background-color: #f5f5f5;
+    color: black;
+    border: 1px solid black;
+}
+
+
+.question-item, .question-render-item {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin: 2rem 0;
+}
+

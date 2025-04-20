@@ -10,6 +10,12 @@ import NavigationMobile from "./NavigationMobile";
 import * as userClient from "../Account/client";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Quizzes from "./Quiz";
+import QuizDetails from "./Quiz/QuizDetails";
+import QuizEditor from "./Quiz/QuizEditor";
+import QuizPreview from "./Quiz/QuizPreview";
+import TakeQuiz from "./Quiz/TakeQuiz";
+import QuizResults from "./Quiz/QuizResults";
 
 
 export default function Courses() {
@@ -32,6 +38,7 @@ export default function Courses() {
         fetchCourses();
       }, [currentUser]);
   const course = courses.find((course : any) => course._id === cid);
+  
   return (
     <div id="wd-courses" className="w-100"> 
       <div className="d-flex align-items-center">
@@ -54,6 +61,12 @@ export default function Courses() {
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<Table cid = {cid}/>} />
+            <Route path="Quizzes" element={<Quizzes />}/>
+            <Route path="Quizzes/:qid" element={<QuizDetails />}/>
+            <Route path="Quizzes/:qid/preview" element={<QuizPreview />}/>
+            <Route path="Quizzes/:qid/editor" element={<QuizEditor />}/>
+            <Route path="Quizzes/:qid/take" element={<TakeQuiz />}/>
+            <Route path="Quizzes/:qid/results" element={<QuizResults />}/>
             <Route path="Nav" element={<NavigationMobile />}/>
           </Routes>
         </div>
