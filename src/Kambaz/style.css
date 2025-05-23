@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -42,4 +44,42 @@
 .custom-button:hover {
   background-color: #e0e0e0 !important;
   color: black !important; 
+}
+
+.nav-left Button,.hero-main-content .hero-main-content-left Button {
+  font-family: 'inter';
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.hero-main-content .hero-main-content-left Button {
+  font-family: 'inter';
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+
+.nav-right {
+  font-family: 'inter';
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.hero-main-content-left h2{
+  font-size: 48px;
+  font-family: 'inter';
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero-main-content-left p{
+  font-size: 20px;
+  font-family: 'inter';
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.hero-main-content-right img{
+  max-width: 500px;
+  border-radius: 25px;
 }

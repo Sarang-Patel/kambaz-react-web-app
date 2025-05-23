@@ -17,7 +17,7 @@ export default function Signin() {
   };
 
   return (
-    <div id="wd-signin-screen">
+    <div id="wd-signin-screen" style={{minWidth:"350px"}}>
       <div>
         <h3>Sign in</h3>
         <input
@@ -48,18 +48,7 @@ export default function Signin() {
           Sign up
         </Link>
       </div>
-          <br /><br /><br /><br />
 
-      <div className="team-details bg-warning p-5">
-        <h1>Project - Quiz Section</h1>
-        <h3>Sarang Patel - Grad</h3><br />
-        <a href="https://github.com/Sarang-Patel/kambaz-react-web-app/tree/finalProject">
-          <h5>React Github link</h5>
-        </a>
-        <a href="https://github.com/Sarang-Patel/kambaz-node-server-app/tree/finalProject">
-          <h5>Node Github link</h5>
-        </a>
-      </div>
     </div>
   );
 }
