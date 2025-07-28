@@ -1,50 +1,99 @@
-# React + TypeScript + Vite
+# Kambaz LMS 🧑‍🏫
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Kambaz** is a web-based Learning Management System (LMS) developed as part of the Web Development course at Northeastern University. Built using the **MERN stack (MongoDB, Express, React, Node.js)**, Kambaz provides a responsive, dynamic, and interactive single-page application that allows users to manage courses, assignments, profiles, and grades.
 
-Currently, two official plugins are available:
+This project mirrors real-world LMS systems like Canvas, serving as a full-stack educational exercise designed by Dr. Jose Annunziato.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔧 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend:** React + TypeScript + Vite  
+- **State Management:** useState, useEffect, and Redux  
+- **Styling:** CSS, Bootstrap, React-Bootstrap, and React Icons  
+- **Routing:** React Router DOM  
+- **Backend:** Node.js with Express  
+- **Database:** MongoDB (Local & Atlas Cloud)  
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Features
+
+### 👤 Account Management
+- Sign In / Sign Up  
+- Profile Edit / Save  
+- Role-based views (Student, Faculty, Admin)
+
+### 📚 Course Management
+- Dashboard with enrolled/teaching courses  
+- Add / Edit / Delete Courses  
+- View Course Details
+
+### 📂 Module & Assignment Tracking
+- Add modules and lessons  
+- Create and manage assignments  
+- Grade input and updates
+
+### 📝 Quiz System
+- Create and edit quizzes per course  
+- Add questions with multiple choice or short answers  
+- Take quizzes and submit responses  
+- View quiz attempts and results (for students and faculty)
+
+### 🧭 SPA Navigation
+- HashRouter-based routing  
+- Navigation sidebar and breadcrumbs  
+- Responsive layout with reusable components
+
+
+---
+
+## 🚀 Live Demo
+
+You can access the deployed version of the project here:  
+🔗 [https://finalproject-kambaz.netlify.app](https://finalproject-kambaz.netlify.app)
+
+---
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (local or Atlas)
+- VS Code or any IDE
+
+### 1. Clone the Repo
+```bash
+git clone https://github.com/your-username/kambaz-lms.git
+cd kambaz-lms
+````
+
+### 2. Install Dependencies
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 3. Start the Frontend
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+Visit [http://localhost:5173](http://localhost:5173) to see the React app running.
+
+### 4. Start the Backend (in `/api` folder)
+
+```bash
+cd api
+npm install
+npm run start
+```
+
+Make sure MongoDB is running locally or set up your **MongoDB Atlas URI** in a `.env` file.
+
+---
+
+## 📜 License
+
+MIT License — for educational purposes only.
