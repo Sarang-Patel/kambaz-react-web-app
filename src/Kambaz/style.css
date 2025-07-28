@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+.custom-button {
+  background-color: #f5f5f5 !important;
+  color: black !important;
+  border: none;
+  border: 1px solid rgb(75, 75, 75);
+}
+
+.custom-button:hover {
+  background-color: #e0e0e0 !important;
+  color: black !important; 
+}
+
+.nav-left Button,.hero-main-content .hero-main-content-left Button {
+  font-family: 'inter';
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.hero-main-content .hero-main-content-left Button {
+  font-family: 'inter';
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+
+.nav-right {
+  font-family: 'inter';
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.hero-main-content-left h2{
+  font-size: 48px;
+  font-family: 'inter';
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero-main-content-left p{
+  font-size: 20px;
+  font-family: 'inter';
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.hero-main-content-right img{
+  max-width: 500px;
+  border-radius: 25px;
+}

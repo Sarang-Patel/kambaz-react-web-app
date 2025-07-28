@@ -1,0 +1,211 @@
+[
+    {
+      "_id": "M101",
+      "name": "Front-End Development",
+      "description": "Introduction to HTML, CSS, and JavaScript for building web applications.",
+      "course": "CS1234",
+      "lessons": [
+        {
+          "_id": "L101",
+          "name": "HTML Basics",
+          "description": "Introduction to HTML structure and elements.",
+          "module": "M101"
+        },
+        {
+          "_id": "L102",
+          "name": "CSS Fundamentals",
+          "description": "Understanding CSS styling and layout techniques.",
+          "module": "M101"
+        },
+        {
+          "_id": "L103",
+          "name": "JavaScript Essentials",
+          "description": "Basics of JavaScript programming for dynamic web pages.",
+          "module": "M101"
+        }
+      ]
+    },
+    {
+      "_id": "M102",
+      "name": "Back-End Development",
+      "description": "Server-side programming and database integration.",
+      "course": "CS1234",
+      "lessons": [
+        {
+          "_id": "L201",
+          "name": "Node.js and Express",
+          "description": "Introduction to server-side development using Node.js and Express.",
+          "module": "M102"
+        },
+        {
+          "_id": "L202",
+          "name": "Database Integration",
+          "description": "Connecting a web application to a database.",
+          "module": "M102"
+        },
+        {
+          "_id": "L203",
+          "name": "Authentication and Security",
+          "description": "Implementing authentication and security measures in web apps.",
+          "module": "M102"
+        }
+      ]
+    },
+    {
+      "_id": "M201",
+      "name": "Data Structures Overview",
+      "description": "Introduction to fundamental data structures.",
+      "course": "CS5678",
+      "lessons": [
+        {
+          "_id": "L301",
+          "name": "Arrays and Linked Lists",
+          "description": "Understanding arrays and linked lists in data structures.",
+          "module": "M201"
+        },
+        {
+          "_id": "L302",
+          "name": "Stacks and Queues",
+          "description": "Exploring stacks and queues for data management.",
+          "module": "M201"
+        },
+        {
+          "_id": "L303",
+          "name": "Trees and Graphs",
+          "description": "Introduction to tree and graph structures.",
+          "module": "M201"
+        }
+      ]
+    },
+    {
+      "_id": "M301",
+      "name": "Introduction to AI",
+      "description": "Foundational concepts in artificial intelligence.",
+      "course": "CS91011",
+      "lessons": [
+        {
+          "_id": "L401",
+          "name": "Machine Learning Basics",
+          "description": "Overview of supervised and unsupervised learning.",
+          "module": "M301"
+        },
+        {
+          "_id": "L402",
+          "name": "Neural Networks",
+          "description": "Understanding artificial neural networks.",
+          "module": "M301"
+        },
+        {
+          "_id": "L403",
+          "name": "AI Ethics",
+          "description": "Exploring ethical considerations in AI development.",
+          "module": "M301"
+        }
+      ]
+    },
+    {
+      "_id": "M401",
+      "name": "Networking Fundamentals",
+      "description": "Core concepts in computer networking.",
+      "course": "CS1213",
+      "lessons": [
+        {
+          "_id": "L501",
+          "name": "Network Protocols",
+          "description": "Understanding TCP/IP and OSI models.",
+          "module": "M401"
+        },
+        {
+          "_id": "L502",
+          "name": "Network Security",
+          "description": "Basic security measures for network protection.",
+          "module": "M401"
+        },
+        {
+          "_id": "L503",
+          "name": "Cloud Networking",
+          "description": "Introduction to cloud-based networking solutions.",
+          "module": "M401"
+        }
+      ]
+    },
+    {
+      "_id": "M501",
+      "name": "Database Design and Management",
+      "description": "Overview of database design principles and management.",
+      "course": "CS1415",
+      "lessons": [
+        {
+          "_id": "L601",
+          "name": "SQL Fundamentals",
+          "description": "Introduction to SQL and relational databases.",
+          "module": "M501"
+        },
+        {
+          "_id": "L602",
+          "name": "NoSQL Databases",
+          "description": "Understanding NoSQL database types and usage.",
+          "module": "M501"
+        },
+        {
+          "_id": "L603",
+          "name": "Database Security",
+          "description": "Implementing security best practices for databases.",
+          "module": "M501"
+        }
+      ]
+    },
+    {
+      "_id": "M601",
+      "name": "Cloud Computing Essentials",
+      "description": "Introduction to cloud computing technologies.",
+      "course": "CS1617",
+      "lessons": [
+        {
+          "_id": "L701",
+          "name": "Virtualization",
+          "description": "Understanding virtualization in cloud computing.",
+          "module": "M601"
+        },
+        {
+          "_id": "L702",
+          "name": "Cloud Services",
+          "description": "Overview of IaaS, PaaS, and SaaS models.",
+          "module": "M601"
+        },
+        {
+          "_id": "L703",
+          "name": "Cloud Security",
+          "description": "Ensuring security in cloud environments.",
+          "module": "M601"
+        }
+      ]
+    },
+    {
+      "_id": "M701",
+      "name": "Cybersecurity Fundamentals",
+      "description": "Basic principles of cybersecurity and risk management.",
+      "course": "CS1819",
+      "lessons": [
+        {
+          "_id": "L801",
+          "name": "Cryptography Basics",
+          "description": "Introduction to encryption and cryptographic methods.",
+          "module": "M701"
+        },
+        {
+          "_id": "L802",
+          "name": "Ethical Hacking",
+          "description": "Understanding penetration testing and ethical hacking.",
+          "module": "M701"
+        },
+        {
+          "_id": "L803",
+          "name": "Risk Management",
+          "description": "Implementing risk assessment and mitigation strategies.",
+          "module": "M701"
+        }
+      ]
+    }
+  ]
+  
