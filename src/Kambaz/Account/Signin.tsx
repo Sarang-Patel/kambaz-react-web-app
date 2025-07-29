@@ -51,14 +51,17 @@ export default function Signin() {
           <br /><br /><br /><br />
 
       <div className="team-details bg-warning p-5">
-        <h1>Project - Quiz Section</h1>
-        <h3>Sarang Patel - Grad</h3><br />
-        <a href="https://github.com/Sarang-Patel/kambaz-react-web-app/tree/finalProject">
-          <h5>React Github link</h5>
-        </a>
-        <a href="https://github.com/Sarang-Patel/kambaz-node-server-app/tree/finalProject">
-          <h5>Node Github link</h5>
-        </a>
+        <h1>Demo Accounts</h1>
+        <h6>Please feel free to use the following existing accounts to try features of the app</h6>
+        <h6>or create your own</h6><br />
+        <p>
+          <b>Professor Account:</b><br />
+          username : testfaculty <br />
+          pass : 1234<br /><br />
+          <b>Student Account:</b><br />
+          username: teststudent<br />
+          pass : 1234
+        </p>
       </div>
     </div>
   );
