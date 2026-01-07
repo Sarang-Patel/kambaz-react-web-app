@@ -1,8 +1,8 @@
-# Kambaz LMS 🧑‍🏫
+# Kambaz LMS
 
 **Kambaz** is a web-based Learning Management System (LMS) developed as part of the Web Development course at Northeastern University. Built using the **MERN stack (MongoDB, Express, React, Node.js)**, Kambaz provides a responsive, dynamic, and interactive single-page application that allows users to manage courses, assignments, profiles, and grades.
 
-This project mirrors real-world LMS systems like Canvas, serving as a full-stack educational exercise designed by Dr. Jose Annunziato.
+This project mirrors real-world LMS systems like Canvas.
 
 ---
 
@@ -93,7 +93,3 @@ npm run start
 Make sure MongoDB is running locally or set up your **MongoDB Atlas URI** in a `.env` file.
 
 ---
-
-## 📜 License
-
-MIT License — for educational purposes only.
